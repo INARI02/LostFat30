@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/chart_layout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="@dimen/padding_start"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="0dp"
+			android:text="@string/waistline"
+			android:textColor="@android:color/black"
+			android:textSize="16sp" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/btn_edit"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="end|center_vertical"
+			android:clickable="true"
+			android:focusable="true"
+			android:foreground="?android:attr/selectableItemBackground"
+			android:paddingLeft="@dimen/padding_start"
+			android:paddingTop="10dp"
+			android:paddingRight="@dimen/padding_start"
+			android:paddingBottom="10dp"
+			android:text="@string/edit"
+			android:textAllCaps="true"
+			android:textColor="@color/colorPrimary"
+			android:textSize="14sp" />
+	</FrameLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="60dp"
+		android:gravity="center_horizontal"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal|bottom"
+			android:orientation="horizontal">
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/txt_summary"
+				fontPath="@string/font_bold"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="0.00"
+				android:textColor="@android:color/black"
+				android:textSize="24sp" />
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/txt_unit"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="5dp"
+				android:text="kg"
+				android:textColor="@android:color/black"
+				android:textSize="15sp" />
+		</LinearLayout>
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/last_30_days"
+			android:textColor="@android:color/black"
+			android:textSize="11sp" />
+
+	</LinearLayout>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_marginBottom="20dp"
+		android:layout_weight="1"
+		android:paddingLeft="@dimen/padding_start">
+
+		<com.github.mikephil.charting.charts.LineChart
+			android:id="@+id/test_chart"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginTop="10dp" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/sticky_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="top|center_horizontal"
+			android:layout_marginRight="7dp"
+			android:background="#ffffff"
+			android:text="Jun, 2019"
+			android:textColor="#000000"
+			android:textSize="10sp" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/label_y"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="top|start"
+			android:layout_marginLeft="5dp"
+			android:background="#ffffff"
+			android:text="Kg"
+			android:textColor="#000000"
+			android:textSize="13sp" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/txt_loading"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="center"
+			android:text="Loading"
+			android:textColor="@color/colorPrimary"
+			android:textSize="14sp"
+			android:visibility="gone" />
+	</FrameLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="20dp"
+			android:orientation="horizontal">
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingLeft="@dimen/padding_start"
+				android:text="@string/chart_current"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/txt_current"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="end|center_vertical"
+				android:paddingRight="@dimen/padding_start"
+				android:text="60.00 CM"
+				android:textColor="@color/black"
+				android:textSize="17sp" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="20dp"
+			android:orientation="horizontal">
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingLeft="@dimen/padding_start"
+				android:text="@string/chart_maximum"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/txt_maximum"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="end|center_vertical"
+				android:paddingRight="@dimen/padding_start"
+				android:text="60.00 CM"
+				android:textColor="@color/black"
+				android:textSize="17sp" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="20dp"
+			android:orientation="horizontal">
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingLeft="@dimen/padding_start"
+				android:text="@string/chart_minimum"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/txt_minimum"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="end|center_vertical"
+				android:paddingRight="@dimen/padding_start"
+				android:text="60.00 CM"
+				android:textColor="@color/black"
+				android:textSize="17sp" />
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</LinearLayout>

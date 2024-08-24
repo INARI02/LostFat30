@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginBottom="5dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/day_name"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:textSize="16dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="sds"
+        android:textColor="@color/black"
+        tools:ignore="SpUsage" />
+
+    <FrameLayout
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/current_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="6dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="16dp"
+            android:text="10"
+            android:textColor="@color/black"
+            tools:ignore="SpUsage" />
+
+        <FrameLayout
+            android:id="@+id/date_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_circle_check_single_day"
+            android:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_check_circle_black_24dp" />
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

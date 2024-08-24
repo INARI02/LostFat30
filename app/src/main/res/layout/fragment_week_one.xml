@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nhn.fitness.ui.fragments.WeekOneFragment">
+
+    <com.nhn.fitness.ui.customViews.CheckDayView
+        android:id="@+id/img_one"
+        android:layout_width="@dimen/size_check_large"
+        android:layout_height="@dimen/size_check_large"
+        app:layout_constraintBottom_toTopOf="@id/img_five"
+        app:layout_constraintEnd_toStartOf="@id/arrow_one"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.nhn.fitness.ui.customViews.CheckDayView
+        android:id="@+id/img_two"
+        android:layout_width="@dimen/size_check_large"
+        android:layout_height="@dimen/size_check_large"
+        app:layout_constraintBottom_toBottomOf="@id/img_one"
+        app:layout_constraintEnd_toStartOf="@id/arrow_two"
+        app:layout_constraintStart_toEndOf="@id/arrow_one"
+        app:layout_constraintTop_toTopOf="@id/img_one" />
+
+    <com.nhn.fitness.ui.customViews.CheckDayView
+        android:id="@+id/img_three"
+        android:layout_width="@dimen/size_check_large"
+        android:layout_height="@dimen/size_check_large"
+        app:layout_constraintBottom_toBottomOf="@id/img_one"
+        app:layout_constraintEnd_toStartOf="@id/arrow_three"
+        app:layout_constraintStart_toEndOf="@id/arrow_two"
+        app:layout_constraintTop_toTopOf="@id/img_one" />
+
+    <com.nhn.fitness.ui.customViews.CheckDayView
+        android:id="@+id/img_four"
+        android:layout_width="@dimen/size_check_large"
+        android:layout_height="@dimen/size_check_large"
+        app:layout_constraintBottom_toBottomOf="@id/img_one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/arrow_three"
+        app:layout_constraintTop_toTopOf="@id/img_one" />
+
+    <com.nhn.fitness.ui.customViews.CheckDayView
+        android:id="@+id/img_five"
+        android:layout_width="@dimen/size_check_large"
+        android:layout_height="@dimen/size_check_large"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/arrow_four"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_one"
+        app:srcCompat="@drawable/ic_check_circle_black_24dp" />
+
+    <com.nhn.fitness.ui.customViews.CheckDayView
+        android:id="@+id/img_six"
+        android:layout_width="@dimen/size_check_large"
+        android:layout_height="@dimen/size_check_large"
+        app:layout_constraintBottom_toBottomOf="@id/img_five"
+        app:layout_constraintEnd_toStartOf="@id/arrow_five"
+        app:layout_constraintStart_toEndOf="@id/arrow_four"
+        app:layout_constraintTop_toTopOf="@id/img_five" />
+
+    <com.nhn.fitness.ui.customViews.CheckDayView
+        android:id="@+id/img_seven"
+        android:layout_width="@dimen/size_check_large"
+        android:layout_height="@dimen/size_check_large"
+        app:layout_constraintBottom_toBottomOf="@id/img_five"
+        app:layout_constraintEnd_toStartOf="@id/arrow_six"
+        app:layout_constraintStart_toEndOf="@id/arrow_five"
+        app:layout_constraintTop_toTopOf="@id/img_five" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_eight"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        app:layout_constraintBottom_toBottomOf="@id/img_five"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_verified_user"
+        app:layout_constraintStart_toEndOf="@id/arrow_six"
+        app:layout_constraintTop_toTopOf="@id/img_five" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/arrow_one"
+        android:layout_width="@dimen/size_arrow"
+        android:layout_height="@dimen/size_arrow"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/img_one"
+        app:layout_constraintEnd_toStartOf="@id/img_two"
+        app:layout_constraintStart_toEndOf="@id/img_one"
+        app:layout_constraintTop_toTopOf="@id/img_one"
+        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/arrow_two"
+        android:layout_width="@dimen/size_arrow"
+        android:layout_height="@dimen/size_arrow"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/img_one"
+        app:layout_constraintEnd_toStartOf="@id/img_three"
+        app:layout_constraintStart_toEndOf="@id/img_two"
+        app:layout_constraintTop_toTopOf="@id/img_one"
+        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/arrow_three"
+        android:layout_width="@dimen/size_arrow"
+        android:layout_height="@dimen/size_arrow"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/img_one"
+        app:layout_constraintEnd_toStartOf="@id/img_four"
+        app:layout_constraintStart_toEndOf="@id/img_three"
+        app:layout_constraintTop_toTopOf="@id/img_one"
+        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/arrow_four"
+        android:layout_width="@dimen/size_arrow"
+        android:layout_height="@dimen/size_arrow"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/img_five"
+        app:layout_constraintEnd_toStartOf="@id/img_six"
+        app:layout_constraintStart_toEndOf="@id/img_five"
+        app:layout_constraintTop_toTopOf="@id/img_five"
+        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/arrow_five"
+        android:layout_width="@dimen/size_arrow"
+        android:layout_height="@dimen/size_arrow"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/img_five"
+        app:layout_constraintEnd_toStartOf="@id/img_seven"
+        app:layout_constraintStart_toEndOf="@id/img_six"
+        app:layout_constraintTop_toTopOf="@id/img_five"
+        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/arrow_six"
+        android:layout_width="@dimen/size_arrow"
+        android:layout_height="@dimen/size_arrow"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/img_five"
+        app:layout_constraintEnd_toStartOf="@id/img_eight"
+        app:layout_constraintStart_toEndOf="@id/img_seven"
+        app:layout_constraintTop_toTopOf="@id/img_five"
+        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

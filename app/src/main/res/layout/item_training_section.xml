@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	app:cardCornerRadius="@dimen/_12sdp"
+	android:layout_marginTop="@dimen/_12sdp"
+	app:cardElevation="0dp">
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/bg_training_exercise"
+		android:orientation="horizontal">
+
+		<LinearLayout
+			android:layout_marginStart="14dp"
+			android:layout_marginBottom="@dimen/_12sdp"
+			android:orientation="vertical"
+			android:layout_marginEnd="@dimen/_24sdp"
+			android:layout_marginTop="@dimen/_12sdp"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent">
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/txt_title"
+				android:fontFamily="sans-serif-medium"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:maxLines="1"
+				android:singleLine="true"
+				android:text="Day 1"
+				android:layout_marginBottom="2dp"
+				android:textColor="@color/black"
+				android:textSize="18dp"
+				tools:ignore="SpUsage" />
+
+			<TableRow
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:id="@+id/txt_daily_exercises"
+					android:fontFamily="sans-serif"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="12"
+					android:layout_marginEnd="4dp"
+					android:textColor="#8D959D"
+					android:textSize="14dp"
+					tools:ignore="SpUsage" />
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:fontFamily="sans-serif"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/exercises"
+					android:textColor="#8D959D"
+					android:textSize="14dp"
+					tools:ignore="SpUsage" />
+			</TableRow>
+		</LinearLayout>
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:padding="8dp"
+			android:id="@+id/btn_option"
+			android:tint="@color/black"
+			android:layout_gravity="center|end"
+			android:src="@drawable/ic_more_vert"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+
+	</FrameLayout>
+</androidx.cardview.widget.CardView>

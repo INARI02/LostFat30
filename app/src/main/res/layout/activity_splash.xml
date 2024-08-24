@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:src="@drawable/bg_logo_app"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_88sdp"
+        android:layout_height="wrap_content"/>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_gravity="center"
+        android:indeterminateDrawable="@drawable/custom_splash_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_88sdp" />
+<!--    <com.flaviofaria.kenburnsview.KenBurnsView-->
+<!--        android:id="@+id/splash_bg"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:src="@drawable/splash_bg"-->
+<!--        android:scaleType="fitXY"/>-->
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@drawable/bg_color_splash"-->
+<!--        android:transitionName="mask" />-->
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_guide_line"-->
+<!--        android:layout_width="8dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="54dp"-->
+<!--        android:src="@drawable/line_orange"-->
+<!--        android:layout_alignTop="@+id/ll_workout"-->
+<!--        android:layout_alignBottom="@+id/ll_workout"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginLeft="40dp"/>-->
+<!--    <LinearLayout-->
+<!--        android:orientation="vertical"-->
+<!--        android:id="@+id/ll_workout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="54dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_toRightOf="@+id/iv_guide_line">-->
+<!--        <TextView-->
+<!--            android:textSize="30sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:id="@+id/tv_name"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/app_name"-->
+<!--            android:textAllCaps="true"/>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+<!--            <ProgressBar-->
+<!--                android:visibility="gone"-->
+<!--                android:id="@+id/pbLoadData"-->
+<!--                android:layout_width="20dip"-->
+<!--                android:layout_height="20dip"-->
+<!--                android:layout_marginRight="5dip"-->
+<!--                android:layout_gravity="center"-->
+<!--                />-->
+<!--            <TextView-->
+<!--                android:layout_gravity="center"-->
+<!--                android:textSize="17sp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:id="@+id/tv_slogan"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/power_by"/>-->
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+</FrameLayout>

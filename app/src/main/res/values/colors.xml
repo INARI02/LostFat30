@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F44336</color>
+    <color name="colorPrimaryDark">#F44336</color>
+    <color name="colorAccent">#FA6B41</color>
+    <color name="colorAccentLight">#68F78766</color>
+
+    <color name="colorTextTitle">#FFFFFF</color>r
+    <color name="colorTextSubTitle">#FFFFFF</color>
+
+    <color name="colorVideoWorkout">#34495e</color>
+
+    // Calendar
+    <color name="grayTextColor">#343434</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="blue">#5579E5</color>
+    <color name="accentBlue">#BCCEFC</color>
+    <color name="color_today">#02b744</color>
+    <color name="text_gray">#676767</color>
+    <color name="text_gray_light">#BABABA</color>
+
+    <color name="yellow">#F8B400</color>
+
+    <color name="gray">#e0e0e0</color>
+    <color name="theme_bg_gray">#f4f4f4</color>
+    <color name="text_color_gray">#ff9b9b9b</color>
+    <color name="text_color_title_gray">#757575</color>
+    <color name="blueLight">#2538C8</color>
+    <color name="red">#DC2323</color>
+    <color name="text_change_select">#F3F7FB</color>
+    <color name="text_unselect">#4D2538C8</color>
+    <color name="gray_gradient">#40000000</color>
+    <color name="grayTab">#20E0E0E0</color>
+
+</resources>

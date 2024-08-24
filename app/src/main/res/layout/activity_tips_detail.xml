@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/white"
+	android:fitsSystemWindows="true"
+	tools:context="com.nhn.fitness.ui.activities.TipsDetailActivity">
+
+	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/appBar"
+		android:layout_width="match_parent"
+		android:layout_height="240dp"
+		android:fitsSystemWindows="true"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+		<com.google.android.material.appbar.CollapsingToolbarLayout
+			android:id="@+id/main.collapsing"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:fitsSystemWindows="true"
+			app:contentScrim="?attr/colorPrimary"
+			app:layout_scrollFlags="scroll|exitUntilCollapsed"
+			app:titleEnabled="false">
+
+			<FrameLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@android:color/black"
+				android:fitsSystemWindows="true"
+				android:orientation="vertical"
+				app:layout_collapseMode="pin">
+
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/img_thumb"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:fitsSystemWindows="true"
+					android:scaleType="centerCrop"
+					android:transitionName="thumb"
+					app:srcCompat="@drawable/belly1" />
+			</FrameLayout>
+
+			<androidx.appcompat.widget.Toolbar
+				android:id="@+id/toolBar"
+				android:layout_width="match_parent"
+				android:layout_height="?attr/actionBarSize"
+				android:layout_gravity="top"
+				android:background="@android:color/transparent"
+				app:layout_collapseMode="pin"
+				app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+				<FrameLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+
+					<androidx.appcompat.widget.AppCompatImageView
+						android:id="@+id/menu_sort"
+						android:layout_width="56dp"
+						android:layout_height="56dp"
+						android:layout_gravity="center_vertical|right"
+						android:layout_marginRight="16dp"
+						android:background="?attr/actionBarItemBackground"
+						android:clickable="true"
+						android:focusable="true"
+						android:padding="15dp"
+						android:visibility="gone"
+						app:srcCompat="@drawable/ic_sort" />
+				</FrameLayout>
+			</androidx.appcompat.widget.Toolbar>
+
+		</com.google.android.material.appbar.CollapsingToolbarLayout>
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<androidx.core.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="20dp"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/txt_title"
+				fontPath="@string/font_bold"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:lineSpacingExtra="8dp"
+				android:text="This is title"
+				android:textColor="@color/black"
+				android:textSize="24sp" />
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/txt_content"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="12dp"
+				android:lineSpacingExtra="6dp"
+				android:text="This is content"
+				android:textColor="@color/black"
+				android:textSize="16sp" />
+		</LinearLayout>
+
+	</androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

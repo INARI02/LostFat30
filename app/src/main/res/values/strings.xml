@@ -1,0 +1,303 @@
+<resources>
+	<string name="app_name">Burn Fat 30 days - Home Workout</string>
+
+	<!-- TODO: Font -->
+	<string name="font_regular" translatable="false">fonts/sfprodisplay_regular.ttf</string>
+	<string name="font_bold" translatable="false">fonts/sfpro_display_semibold.otf"</string>
+	<!--<string name="font_bold">fonts/sfpro_display_bold.otf"</string>-->
+	<string name="font_medium" translatable="false">fonts/sfpro_display_medium.otf"</string>
+	<string name="font_light_1" translatable="false">fonts/helveticaneue.ttf"</string>
+	<string name="font_light_2" translatable="false">fonts/poiretone_regular.ttf"</string>
+	<!-- TODO: -->
+	<string name="repeat_sun">Sun</string>
+	<string name="repeat_sat">Sat</string>
+	<string name="repeat_fri">Fri</string>
+	<string name="repeat_thu">Thu</string>
+	<string name="repeat_wed">Wed</string>
+	<string name="repeat_tue">Tue</string>
+	<string name="repeat_mon">Mon</string>
+	<string name="level_beginner">Beginner</string>
+	<string name="level_advanced">Advanced</string>
+	<string name="level_intermediate">Medium</string>
+	<string name="number_workouts">%d workouts</string>
+	<string name="workouts_total">Workouts</string>
+	<string name="introduce">Introduce</string>
+	<string name="title_introduce">All the radio you need in one app</string>
+	<string name="detail_title_introduce">Enjoy even more than 100+ popular channels in this app: VOV, BBC, talkSPORT, BBC Radio 1Xtra, Classic FM, All Things Considered, Delilah,... News: Stay up-to-date on the latest news from local, national, and international sources, including Radio Emigranti, Nehanda Radio, BBC Radio, CBLA-FM, CBC Radio One Toronto live,...</string>
+	<string name="detail_introduce">ENJOY YOUR RADIO ANYTIME, ANYWHERE Free radio app is a simple radio app that includes everything you need, including live news, sports, music, podcasts, and your favorite radio stations worldwide.</string>
+	<string name="title_history_fullbody">Full body 1 - %s</string>
+	<string name="title_history_fullbody_2">Full body 2 - %s</string>
+	<string name="title_history_fullbody_3">Full body 3 - %s</string>
+	<string name="title_history_unknown">Unknown</string>
+	<string name="default_reminder_warm_up">Start when you wake up</string>
+	<string name="default_reminder_sleepy">Relax before sleeping</string>
+	<string name="challange_days_left">%d Days left</string>
+	<string name="progress">Progress</string>
+	<string name="sunday">Sunday</string>
+	<string name="monday">Monday</string>
+	<string name="tuesday">Tuesday</string>
+	<string name="wednesday">Wednesday</string>
+	<string name="thursday">Thursday</string>
+	<string name="friday">Friday</string>
+	<string name="saturday">Saturday</string>
+	<string name="day">Day</string>
+	<string name="days">Days</string>
+	<string name="workouts">workouts</string>
+	<string name="calories">Calories</string>
+	<string name="kcal" translatable="false">Kcal</string>
+	<string name="week_goal">Weekly Goals</string>
+	<string name="full_body">Full body</string>
+	<string name="each_side">Each Side</string>
+	<string name="confirm_delete">Confirm delete?</string>
+	<string name="cancel">Cancel</string>
+	<string name="agree">Agree</string>
+	<string name="ok">OK</string>
+	<string name="send">Send</string>
+	<string name="add_name">Add name</string>
+	<string name="tips">Tips</string>
+	<string name="reminder">Reminder</string>
+	<string name="replace">Replace</string>
+	<string name="set_duration_rest">(5 ~ 180 secs)</string>
+	<string name="set_duration_countdown">(10 ~ 30 secs)</string>
+	<string name="under_weight">Underweight</string>
+	<string name="normal_weight">Normal weight</string>
+	<string name="over_weight">Overweight</string>
+	<string name="obesity">Obesity</string>
+	<string name="ready_to_to_start_with">Ready to go. Start with</string>
+	<string name="seconds">seconds</string>
+	<string name="take_a_rest_next">Take a rest. Next.</string>
+	<string name="start">Start</string>
+	<string name="this_language_not_support">This language is not supported!</string>
+	<string name="did_you_hear_the_test_voice">Have you hear the voice test yet?</string>
+	<string name="please_choose_voide_engine">Please choose guide voice engine:</string>
+	<string name="please_choose_language_voice_engine">Please choose guide voice engine:</string>
+	<string name="no">No</string>
+	<string name="yes">Yes</string>
+	<string name="default_string">Default</string>
+	<string name="favorite">Favorite</string>
+	<string name="routines_tab">Habit</string>
+	<string name="title_notify">Female Fitness - Women Workout</string>
+	<string name="content_notify">Its time for Female Fitness - Women Workout, let\'s start</string>
+	<string name="snooze">Snooze</string>
+	<string name="start_notify">Start</string>
+	<string name="title_7_4_challange">7x4 Challenge</string>
+	<string name="challange_go">GO!</string>
+	<string name="week_1">Week 1</string>
+	<string name="week_2">Week 2</string>
+	<string name="week_3">Week 3</string>
+	<string name="week_4">Week 4</string>
+	<string name="title_edit_plan">Edit plan</string>
+	<string name="btn_save">Save</string>
+	<string name="title_guide">What your trouble zone?</string>
+	<string name="btn_next">Next</string>
+	<string name="title_set_week_goal">Set your weekly goal</string>
+	<string name="content_set_week_goal">We recommend training at least 3 days weekly for a better result.</string>
+	<string name="weekly_train_day">Weekly training days</string>
+	<string name="first_day_of_week">First day of week</string>
+	<string name="title_set_reminder">Set Reminder</string>
+	<string name="content_set_reminder">Achievement comes with discipline</string>
+	<string name="btn_finished">Finished</string>
+	<string name="title_history">History</string>
+	<string name="title_profile">Profile</string>
+	<string name="units">Unit</string>
+	<string name="weight">Weight</string>
+	<string name="height">Height</string>
+	<string name="year_of_birth">Year of Birth</string>
+	<string name="title_reminder">Reminder</string>
+	<string name="title_replace_exercise">Replace exercise</string>
+	<string name="current">Current</string>
+	<string name="you_rock">Workout\n completed</string>
+	<string name="exercises">Exercises</string>
+	<string name="minutes">Minutes</string>
+	<string name="btn_do_again">Do it again</string>
+	<string name="btn_share">Share</string>
+	<string name="btn_share_with_friend">Share with friends</string>
+	<string name="btn_start">Start</string>
+	<string name="title_set_your_weekly_goal">Weekly goal setting</string>
+	<string name="video">Video</string>
+	<string name="animation">Animation</string>
+	<string name="btn_set">Set</string>
+	<string name="btn_reset">Reset</string>
+	<string name="repeat">Repeat</string>
+	<string name="secs">secs</string>
+	<string name="title_sound_option">Sound options</string>
+	<string name="mute">Mute</string>
+	<string name="voice_guide">Voice guide</string>
+	<string name="coach_tips">Coach Advice</string>
+	<string name="content_warming_engine">The TSS engine you are using is not working now, please double check it, switch to another TTS engine, or download TTS voice language.</string>
+	<string name="btn_down_tts_engine">Download TTS Engine</string>
+	<string name="btn_select_tts_engine">Select TTS Engine</string>
+	<string name="txt_empty_favorite">Your favorite workouts will be shown here.</string>
+	<string name="btn_start_workout">Start your\nworkout</string>
+	<string name="current_text">Current</string>
+	<string name="edit">Edit</string>
+	<string name="title_chart_calories">Calories burned, estimated (Kcal)</string>
+	<string name="number">Number</string>
+	<string name="content_dialog_quit">If you get tired , take a break, but don\'t quit!</string>
+	<string name="btn_quit">Quit</string>
+	<string name="btn_continue">Continue</string>
+	<string name="title_report">Statistical</string>
+	<string name="title_settings">Setting</string>
+	<string name="settings_profile">My Profile</string>
+	<string name="settings_reminder">Reminder</string>
+	<string name="title_workout">Workout</string>
+	<string name="settings_rest_set">Set a break time</string>
+	<string name="settings_coundown">Countdown Time</string>
+	<string name="settings_sound">Sound</string>
+	<string name="title_voice_option">Voice selection</string>
+	<string name="settings_test_voice">Voice Test</string>
+	<string name="settings_select_tts_engine">Select TSS Engine</string>
+	<string name="settings_download_tts_engine">Download TTS Engine</string>
+	<string name="settings_voice_language">Spoken Language</string>
+	<string name="settings_down_more_tts_language">Download more TTS language data</string>
+	<string name="settings_device_tts">Device TTS Setting</string>
+	<string name="title_general">General</string>
+	<string name="title_advance">Advance</string>
+	<string name="settings_language">Language</string>
+	<string name="settings_walk">Walk</string>
+	<string name="settings_gym_location">Gym Location</string>
+	<string name="settings_share">Share with friends</string>
+	<string name="title_support">Support</string>
+	<string name="settings_ratings">Review</string>
+	<string name="settings_feedback">Feedback</string>
+	<string name="settings_help">Help</string>
+	<string name="settings_policy">Privacy policy</string>
+	<string name="last_30_days">Last 30 days</string>
+	<string name="guide_add_favorite">Click ❤️ to add workouts to the Training page.</string>
+	<string name="ready_to_go">Ready to go</string>
+	<string name="take_a_rest">Take a rest</string>
+	<string name="next">Next</string>
+	<string name="menu_reset">Reset</string>
+	<string name="title_languages_dialog">Languages</string>
+	<string name="training_tab">Home</string>
+	<string name="workouts_tab">Practice</string>
+	<string name="report_tab">Statistical</string>
+	<string name="setting_tab">More</string>
+	<string name="come_back_in_30_mins" translatable="false">Come back in 30 minutes</string>
+
+	<string-array name="language_display" translatable="false">
+		<item>English</item>
+		<!--<item>French</item>-->
+		<!--<item>Korean</item>-->
+		<!--<item>Spanish</item>-->
+		<!--<item>Portuguese</item>-->
+		<!--<item>Russian</item>-->
+		<item>Vietnamese</item>
+	</string-array>
+
+	<string-array name="language_value" translatable="false">
+		<item>en</item>
+		<!--<item>fr</item>-->
+		<!--<item>ko</item>-->
+		<!--<item>es</item>-->
+		<!--<item>pt</item>-->
+		<!--<item>ru</item>-->
+		<item>vi</item>
+	</string-array>
+	<string name="abs_workout">Abs workout</string>
+	<string name="butt_workout">Butt workout</string>
+	<string name="arm_workout">Arm workout</string>
+	<string name="thigh_workout">Thigh workout</string>
+	<string name="routine">Routine</string>
+	<string name="title_tips_activity" translatable="false">Tips</string>
+	<string name="title_full_body_level_1">REDUCE BELLY FAT</string>
+	<string name="description_full_body_level_1">Beginner</string>
+	<string name="title_full_body_level_2">REDUCE BELLY FAT</string>
+	<string name="description_full_body_level_2">Medium</string>
+	<string name="title_full_body_level_3">REDUCE BELLY FAT</string>
+	<string name="description_full_body_level_3">Advanced</string>
+	<string name="my_training">MY TRANNING</string>
+	<string name="title_my_training">Create the most suitable workouts according to your needs</string>
+
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="add_exercise">Add Exercise</string>
+	<string name="title_activity_add_exercise">Add Exercise</string>
+	<string name="title_add_training">New Training</string>
+	<string name="title_dialog_rename_training">Please name your plan</string>
+	<string name="plan">Plan</string>
+	<string name="menu_rename">Rename</string>
+	<string name="menu_delete">Delete</string>
+	<string name="string_hi">Hi</string>
+	<string name="select_gender">Select Gender</string>
+	<string name="female">Female</string>
+	<string name="title_guide_level">Which plan do \nyou want to start with?</string>
+	<string name="male">Male</string>
+	<string name="btn_close">Close</string>
+	<string name="btn_choose">Choose</string>
+	<string name="btn_add_exercise">Add Exercise</string>
+	<string name="title_activity_choose_plan">Select plans</string>
+	<string name="chart_current">Current:</string>
+	<string name="chart_maximum">Maximum:</string>
+	<string name="chart_minimum">Minimum</string>
+	<string name="waistline">Waistline</string>
+	<string name="settings_gender">Select Gender</string>
+	<string name="title_gender_dialog">Select Gender</string>
+	<string name="settings_delete_all_dât">Delete all data</string>
+	<string name="settings_restart_progress">Restart Progress</string>
+	<string name="title_restart_progress_dialog">Restart Progress</string>
+	<string name="title_delete_all_data_dialog">Clicking delete means you will delete all your data</string>
+	<string name="title_restart_progress">Clicking OK means you will run the whole workout again</string>
+	<string name="ten_seconds_left">10 seconds left</string>
+	<string name="btn_ok">OK</string>
+	<string name="title_rest_day_activity">Rest day</string>
+	<string name="desc_rest_day" translatable="false">Your body and muscles need to get some rest</string>
+	<string name="link_policy">https://sasassg</string>
+
+	<string name="power_by" translatable="false">Power by LUBUTEAM</string>
+	<string name="required_missing" translatable="false">Error. This value should not be blank.</string>
+	<string name="tv_view_all">View All</string>
+	<string name="title_programme">Programme</string>
+	<string name="resume">Resume</string>
+	<string name="total">Total</string>
+	<string name="remind_name">Remind name</string>
+	<string name="detail_text_training">Create the most suitable workouts according to your needs</string>
+	<string name="txt_detail_delete_progress">Clicking delete means that you agree to delete your fitness exercises</string>
+	<string name="feedback">Feedback</string>
+    <string name="txt_onboarding">Get fit anytime, anywhere \nwith Burn Fat 30 days</string>
+	<string name="txt_title_policy1">MERRYBLUE built Burn Fat 30 days- Home Workout app as a Free app.</string>
+	<string name="txt_title_policy2">This SERVICE is provided by MERRYBLUE at no cost and is intended for use as is.\nThis page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.\nIf you choose to use my Service, then you agree to the collection and use of information in relation to this policy.\nThe Personal Information that I collect is used for providing and improving the Service.I will not use or share your information with anyone except as described in this Privacy Policy.</string>
+	<string name="txt_title_dot1">Images: We are not responsible for the image content created by users or searched on the internet.</string>
+	<string name="txt_title_dot2">Stories: User-generated stories in the app for political, offensive, or deceptive purposes.</string>
+	<string name="txt_title_dot3">We are not responsible when users of the application for malicious purposes, political purposes, vote, and violate applicable national laws.</string>
+	<string name="txt_detail1">For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information.The information that I request will be retained on your device and is not collected by me in any way.\nThe app does use third party services that may collect information used to identify you.\nLinks to the privacy policies of third party service providers can be used in the app AdMob (dán link https://support.google.com/admob/answer/6128543?hl=en)</string>
+	<string name="txt_detail2">I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third party products) on your phone called Log Data.\nThis Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.</string>
+	<string name="txt_detail3">Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers.\nThese are sent to your browser from the websites that you visit and are stored on your device\'s internal memory.\nThis Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collect information and improve their services.\nYou have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.</string>
+	<string name="txt_detail4">The permissions we use in the application:\nandroid.permission.WRITE_EXTERNAL_STORAGE\n\nandroid.permission.READ_EXTERNAL_STORAGE\n\nandroid.permission.WAKE_LOCK android.permission.VIBRATE\n\nandroid.permission.INTERNET\n\nandroid.permission.ACCESS_NETWORK_STATE\n\nandroid.permission.RECEIVE_BOOT_COMPLETED</string>
+	<string name="txt_note1">We are committed to using the above rights only for the purpose of serving the function of the application and fully comply with the policies of google play and not for any other purpose.</string>
+	<string name="txt_note2">All information provided by users will only be stored on their device and we do not collect and store it in any form (including on servers or on cloud services...).</string>
+	<string name="txt_note3">We do not disclose, store or share any sensitive information of users (email, bank account...).</string>
+	<string name="txt_note4">Any questions or complaints please contact us via email: admin@merryblue.llc</string>
+	<string name="txt_detail5">I may employ third-party companies and individuals due to the following reasons:\nTo facilitate our Service;\n\nTo provide the Service on our behalf;\n\nTo perform Service-related services;\nTo assist us in analyzing how our Service is used.\nI want to inform users of this Service that these third parties have access to your Personal Information.\nThe reason is to perform the tasks assigned to them on our behalf.However, they are obligated not to disclose or use the information for any other purpose.</string>
+	<string name="txt_detail6">I value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it.\nBut remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and I cannot guarantee its absolute security.</string>
+	<string name="txt_detail7">This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site.\nNote that these external sites are not operated by me.Therefore, I strongly advise you to review the Privacy Policy of these websites.\n\nI have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</string>
+	<string name="txt_detail8">These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13.\nIn the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers.\nIf you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do necessary actions.</string>
+	<string name="txt_detail9">I may update our Privacy Policy from time to time.Thus, you are advised to review this page periodically for any changes.\nI will notify you of any changes by posting the new Privacy Policy on this page.These changes are effective immediately after they are posted on this page.</string>
+	<string name="txt_detail10">If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at admin@merryblue.llc</string>
+	<string name="txt_information_collection_and_use">1. Information Collection and Use</string>
+	<string name="txt_log_data">2. Log Data</string>
+	<string name="txt_cookies">3. Cookies</string>
+	<string name="txt_permission">4. Permission</string>
+	<string name="txt_note_policy">NOTE:</string>
+	<string name="txt_service_providers">5. Service Providers</string>
+	<string name="txt_security">6. Security</string>
+	<string name="txt_links_to_other_sites">7. Links to Other Sites</string>
+	<string name="txt_children_s_privacy">8. Children\'s Privacy</string>
+	<string name="txt_changes_to_this_privacy_policy">9. Changes to This Privacy Policy</string>
+	<string name="txt_contact_us">10. Contact Us</string>
+	<string name="txt_content_feedback">Content</string>
+	<string name="txt_content_to_report">Enter the content to report</string>
+	<string name="txt_report_topic">Report topic</string>
+	<string name="txt_error_feedback">Error</string>
+	<string name="txt_full_name">Full name</string>
+	<string name="txt_input_your_name">Input your name</string>
+	<string name="txt_email_feedback">Email</string>
+	<string name="txt_input_your_email">Input your email</string>
+    <string name="this_action_contain_ads">This action contain Ads....</string>
+    <string name="API_KEY">AIzaSyAQHOhnBWSTR7AaKwSr2r4l3_Qqreefnwg</string>
+	<string name="txt_gym_california_fitness_yoga_machinco">California Fitness và Yoga Machinco</string>
+	<string name="txt_gym_california_fitness_yoga_machinco_address">MAC Plaza, Tầng 5-6, 10 Trần Phú, P. Mộ Lao, Hà Đông, Hà Nội, Việt Nam</string>
+	<string name="txt_california_fitness_yoga_machinco_content">Đây là phòng Gym uy tín nhất khu vực Hà Đông</string>
+	<string name="txt_master_gym_club">Master Gym Club</string>
+	<string name="txt_master_gym_club_address">Tầng 4 nhà H10 ngõ 475 Nguyễn Trãi, Thanh Xuân, Hà Nội</string>
+	<string name="txt_master_gym_club_content">Master Gym Club: Các trang thiết bị phòng tập đều được sản xuất hoặc nhập khẩu từ Châu Âu. </string>
+</resources>

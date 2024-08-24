@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_training"
+        icon="@drawable/ic_tab_home"
+        title="@string/training_tab"
+        activecolor="#0086ff"
+        inactivecolor="#323643"/>
+    <tab
+        id="@+id/tab_workouts"
+        icon="@drawable/ic_tab_practice"
+        title="@string/workouts_tab"
+        activecolor="#0086ff"
+        inactivecolor="#323643" />
+    <tab
+        id="@+id/tab_report"
+        icon="@drawable/ic_tab_statistical"
+        title="@string/report_tab"
+        activecolor="#0086ff"
+        inactivecolor="#323643" />
+    <tab
+        id="@+id/tab_settings"
+        icon="@drawable/ic_tab_more"
+        title="@string/setting_tab"
+        activecolor="#0086ff"
+        inactivecolor="#323643" />
+</tabs>

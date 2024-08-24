@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!--<item>-->
+        <!--<shape>-->
+            <!--<solid android:color="@android:color/transparent" />-->
+            <!--&lt;!&ndash;<padding&ndash;&gt;-->
+                <!--&lt;!&ndash;android:bottom="10dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:left="2dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:right="10dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:top="10dp" />&ndash;&gt;-->
+        <!--</shape>-->
+    <!--</item>-->
+    <item>
+        <bitmap
+            android:gravity="right"
+            android:src="@drawable/path_2" />
+    </item>
+
+</layer-list>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginHorizontal="16dp"
+	android:orientation="vertical">
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:src="@drawable/bg_quit_dialog"
+		android:scaleType="centerCrop"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<LinearLayout
+		android:background="@color/gray_gradient"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:fontFamily="sans-serif-medium"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="40dp"
+			android:gravity="center"
+			android:paddingHorizontal="16dp"
+			android:layout_marginHorizontal="24dp"
+			android:text="@string/content_dialog_quit"
+			android:textColor="@color/white"
+			android:textSize="24dp"
+			tools:ignore="SpUsage" />
+
+		<LinearLayout
+			android:layout_marginTop="56dp"
+			android:layout_gravity="center"
+			android:orientation="vertical"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+			<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/btn_continue"
+				android:layout_width="220dp"
+				android:textAllCaps="false"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/_16sdp"
+				android:background="@drawable/bg_btn_border_large"
+				android:text="@string/resume"
+				android:textColor="@color/white"
+				android:textSize="16sp" />
+
+			<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/btn_quit"
+				android:layout_width="220dp"
+				android:layout_height="wrap_content"
+				android:background="@drawable/bg_btn_cancel"
+				android:text="@string/btn_quit"
+				android:textColor="@color/white"
+				android:textSize="16sp" />
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/btn_come_back"
+				android:layout_marginTop="@dimen/_16sdp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/come_back_in_30_mins"
+				android:textAllCaps="true"
+				android:textColor="@color/white"
+				android:layout_gravity="center"
+				android:textSize="16dp"
+				tools:ignore="SpUsage" />
+		</LinearLayout>
+	</LinearLayout>
+
+</FrameLayout>

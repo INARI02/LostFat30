@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_thumb"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="16:8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fullbodyworkout" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_clear" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_title"
+        fontPath="@string/font_bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="FLUTTER KICKS"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/img_cam"
+        app:layout_constraintEnd_toStartOf="@id/img_cam"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/img_cam" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_cam"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_thumb"
+        app:srcCompat="@drawable/ic_videocam" />
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        app:layout_constraintTop_toBottomOf="@id/img_cam"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:fillViewport="true"
+        tools:ignore="MissingConstraints">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:text="Lie on your back with our arms at your sides. Lift your legs and keep them as straight as you can.\n\nThen whickly raise  your right leg up, and simultaneously lower your left leg. Switch legs and repeat."
+            android:textColor="#454545"
+             />
+    </ScrollView>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        app:layout_constraintTop_toBottomOf="@id/SCROLLER_ID" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_each_side"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/each_side"
+        android:textColor="@color/text_gray_light"
+        android:textSize="15sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/txt_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_reduce"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/bg_box"
+        android:gravity="center"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_reset"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_remove" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_increase"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/bg_box"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="+"
+        app:layout_constraintBottom_toTopOf="@id/btn_reset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_time"
+        fontPath="@string/font_bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="00:23"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@id/btn_increase"
+        app:layout_constraintEnd_toStartOf="@id/btn_increase"
+        app:layout_constraintStart_toEndOf="@id/btn_reduce"
+        app:layout_constraintTop_toTopOf="@id/btn_increase" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_reset"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/colorAccentLight"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/btn_reset"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_save"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_save"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/btn_save"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_reset" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

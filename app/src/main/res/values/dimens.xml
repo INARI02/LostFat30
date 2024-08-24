@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="padding_start">14dp</dimen>
+	<dimen name="height_section_item_layout">160dp</dimen>
+	<dimen name="height_workout_item_layout">80dp</dimen>
+	<dimen name="height_divider_group">8dp</dimen>
+	<dimen name="size_check_small">26dp</dimen>
+	<dimen name="height_week">140dp</dimen>
+	<dimen name="size_check_large">38dp</dimen>
+	<dimen name="size_check_large_radius">19dp</dimen>
+	<dimen name="size_arrow">20dp</dimen>
+	<dimen name="height_training_header">180dp</dimen>
+</resources>

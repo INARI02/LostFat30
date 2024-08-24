@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/splash_ft" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_ready_to_go"
+        fontPath="@string/font_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:text="@string/ready_to_go"
+        android:textAllCaps="true"
+        android:textColor="@color/blue"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@id/layout_progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
+
+
+    <FrameLayout
+        android:id="@+id/layout_progress"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_ready_to_go">
+
+        <TableRow
+            android:id="@+id/layout_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_title_next_workout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:maxWidth="340dp"
+                android:maxLength="40"
+                android:maxLines="2"
+                android:text="@string/take_a_rest"
+                android:textColor="@color/black"
+                android:textSize="24dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:paddingVertical="4dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_yt_video" />
+        </TableRow>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_prev_take_a_rest"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical|start"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            app:srcCompat="@drawable/ic_prev" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_next_take_a_rest"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            app:srcCompat="@drawable/ic_next" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_timer_take_a_rest"
+            fontPath="@string/font_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="30"
+            android:textAllCaps="true"
+            android:textColor="@color/blue"
+            android:textSize="46sp" />
+
+        <ProgressBar
+            android:id="@+id/progress_timer_take_a_rest"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:indeterminate="false"
+            android:progress="50"
+            android:progressDrawable="@drawable/rest_progress" />
+
+    </FrameLayout>
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/layout_video"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/white"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:id="@+id/img_thumb_next"-->
+<!--            android:layout_width="70dp"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:layout_marginStart="@dimen/padding_start"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="@dimen/padding_start"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:scaleType="fitXY"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/next"-->
+<!--                android:textAllCaps="true"-->
+<!--                android:textColor="@color/text_gray"-->
+<!--                android:textSize="16sp" />-->
+
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:id="@+id/txt_title_next_workout"-->
+<!--                fontPath="@string/font_bold"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="3dp"-->
+<!--                android:layout_marginEnd="@dimen/padding_start"-->
+<!--                android:layout_marginRight="@dimen/padding_start"-->
+<!--                android:ellipsize="end"-->
+<!--                android:maxLines="2"-->
+<!--                android:text="4/19 russian twist X16"-->
+<!--                android:textAllCaps="true"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="18sp" />-->
+
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

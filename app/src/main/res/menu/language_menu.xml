@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ic_country_vie"
+        android:id="@+id/menu_vie"
+        android:title="Tiếng Việt" />
+    <item
+        android:icon="@drawable/ic_country_eng"
+        android:id="@+id/menu_eng"
+        android:title="English" />
+</menu>

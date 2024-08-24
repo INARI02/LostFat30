@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/bg_guide_activity"
+	tools:context="com.nhn.fitness.ui.activities.GuideGenderActivity">
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:id="@+id/text1"
+		fontPath="@string/font_bold"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="30dp"
+		android:text="@string/string_hi"
+		android:textAllCaps="true"
+		android:textColor="@color/white"
+		android:textSize="36sp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.2" />
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:id="@+id/text2"
+		fontPath="@string/font_bold"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="30dp"
+		android:layout_marginTop="6dp"
+		android:text="@string/select_gender"
+		android:textColor="@color/white"
+		android:textSize="20sp"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/text1" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/imgFemale"
+		android:layout_width="130dp"
+		android:layout_height="160dp"
+		android:padding="10dp"
+		android:scaleType="fitXY"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@id/imgMale"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.46"
+		app:srcCompat="@drawable/female_gender" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/imgMale"
+		android:layout_width="130dp"
+		android:layout_height="160dp"
+		android:scaleType="fitXY"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@id/imgFemale"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.46"
+		app:srcCompat="@drawable/male_gender" />
+
+
+	<RadioGroup
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"
+		android:gravity="center"
+		android:orientation="horizontal"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/imgFemale">
+
+		<androidx.appcompat.widget.AppCompatRadioButton
+			android:id="@+id/rb_female"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:backgroundTint="@color/white"
+			android:checked="true"
+			android:padding="10dp"
+			android:text="@string/female"
+			android:textColor="@color/white"
+			android:textSize="16sp"
+			android:theme="@style/RadioButton" />
+
+		<androidx.appcompat.widget.AppCompatRadioButton
+			android:id="@+id/rb_male"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="80dp"
+			android:backgroundTint="@color/white"
+			android:checked="false"
+			android:paddingLeft="10dp"
+			android:text="@string/male"
+			android:textColor="@color/white"
+			android:textSize="16sp"
+			android:theme="@style/RadioButton" />
+
+	</RadioGroup>
+
+	<androidx.appcompat.widget.AppCompatButton
+		android:id="@+id/btn_next"
+		fontPath="@string/font_bold"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="80dp"
+		android:layout_marginTop="50dp"
+		android:layout_marginRight="80dp"
+		android:background="@drawable/bg_btn_border_white"
+		android:text="@string/btn_next"
+		android:textColor="@color/colorAccent"
+		android:textSize="20sp"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.9" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

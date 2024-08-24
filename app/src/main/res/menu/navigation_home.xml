@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/tab_training"
+        android:icon="@drawable/ic_tab_home"
+        android:title="@string/training_tab" />
+    <item android:id="@+id/tab_workouts"
+        android:icon="@drawable/ic_tab_practice"
+        android:title="@string/workouts_tab" />
+    <item android:id="@+id/tab_report"
+        android:icon="@drawable/ic_tab_statistical"
+        android:title="@string/report_tab"/>
+    <item android:id="@+id/tab_settings"
+        android:icon="@drawable/ic_tab_more"
+        android:title="@string/setting_tab" />
+</menu>

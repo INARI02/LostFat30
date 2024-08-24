@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<FrameLayout
+		android:id="@+id/layout_progress"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:visibility="gone">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/txt_progress"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:text="88%"
+			android:textColor="@color/white"
+			android:textSize="11sp" />
+
+		<ProgressBar
+			android:id="@+id/progress"
+			style="?android:attr/progressBarStyleHorizontal"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:layout_gravity="center"
+			android:background="@drawable/bg_daily_progress"
+			android:indeterminate="false"
+			android:progress="30"
+			android:progressDrawable="@drawable/daily_progress" />
+	</FrameLayout>
+
+	<FrameLayout
+		android:id="@+id/layout_rest"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="32dp"
+			android:layout_height="32dp"
+			app:srcCompat="@drawable/ic_local_cafe" />
+
+	</FrameLayout>
+
+	<FrameLayout
+		android:id="@+id/locked"
+		android:layout_width="48dp"
+		android:layout_height="48dp"
+		android:layout_gravity="center"
+		android:visibility="gone">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:srcCompat="@drawable/circle_grey" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:padding="10dp"
+			app:srcCompat="@drawable/ic_lock" />
+	</FrameLayout>
+
+	<FrameLayout
+		android:id="@+id/checked"
+		android:layout_width="36dp"
+		android:layout_height="36dp"
+		android:layout_gravity="center"
+		android:visibility="gone">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:srcCompat="@drawable/circle_red" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:padding="10dp"
+			app:srcCompat="@drawable/ic_check" />
+
+	</FrameLayout>
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:layout_width="wrap_content"
+		android:text="@string/start"
+		android:visibility="gone"
+		android:id="@+id/tv_start_section"
+		android:textColor="#5579E5"
+		android:paddingVertical="4dp"
+		android:paddingHorizontal="20dp"
+		android:textSize="16dp"
+		android:background="@drawable/bg_text_start_white"
+		android:layout_gravity="end"
+		android:layout_height="wrap_content"/>
+
+</FrameLayout>

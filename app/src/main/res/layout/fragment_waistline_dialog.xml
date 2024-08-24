@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="com.nhn.fitness.ui.dialogs.WaistlineDialogFragment">
+
+
+	<com.nhn.fitness.ui.lib.horizontalCalendar.HorizontalCalendarView
+		android:id="@+id/calender"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#787878" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+
+		android:gravity="center"
+		android:orientation="horizontal">
+
+		<androidx.appcompat.widget.AppCompatEditText
+			android:id="@+id/edt_input"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10dp"
+			android:layout_weight="1"
+			android:backgroundTint="@color/colorAccent"
+			android:inputType="numberDecimal"
+			android:maxLength="6"
+			android:maxLines="1"
+			android:text="70.00"
+			android:textColor="@android:color/black"
+			android:textSize="30sp" />
+
+		<com.nhn.fitness.ui.customViews.HeightUnitSwitchView
+			android:id="@+id/sw_unit"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="end"
+		android:orientation="horizontal"
+		android:padding="10dp">
+
+		<androidx.appcompat.widget.AppCompatButton
+			android:id="@+id/btn_cancel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="?android:attr/selectableItemBackground"
+			android:padding="6dp"
+			android:text="@string/cancel"
+			android:textAllCaps="true"
+			android:textColor="@color/colorPrimary"
+			android:textSize="15sp" />
+
+		<androidx.appcompat.widget.AppCompatButton
+			android:id="@+id/btn_save"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="?android:attr/selectableItemBackground"
+			android:padding="6dp"
+			android:paddingLeft="5dip"
+			android:paddingRight="5dip"
+			android:text="@string/btn_save"
+			android:textAllCaps="true"
+			android:textColor="@color/colorPrimary"
+			android:textSize="15sp" />
+
+	</LinearLayout>
+
+</LinearLayout>

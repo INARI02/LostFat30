@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <com.nhn.fitness.ui.customViews.SingleDayView
+        android:id="@+id/day_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <com.nhn.fitness.ui.customViews.SingleDayView
+        android:id="@+id/day_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <com.nhn.fitness.ui.customViews.SingleDayView
+        android:id="@+id/day_three"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <com.nhn.fitness.ui.customViews.SingleDayView
+        android:id="@+id/day_four"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <com.nhn.fitness.ui.customViews.SingleDayView
+        android:id="@+id/day_five"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <com.nhn.fitness.ui.customViews.SingleDayView
+        android:id="@+id/day_six"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <com.nhn.fitness.ui.customViews.SingleDayView
+        android:id="@+id/day_seven"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+</LinearLayout>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:paddingLeft="10dp">
+
+	<androidx.appcompat.widget.AppCompatTextView
+		fontPath="@string/font_bold"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginTop="20dp"
+		android:layout_marginBottom="@dimen/padding_start"
+		android:text="@string/title_sound_option"
+		android:textColor="@color/black"
+		android:textSize="18sp" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginTop="@dimen/padding_start"
+		android:layout_marginRight="20dp"
+		android:layout_marginBottom="@dimen/padding_start"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:srcCompat="@drawable/ic_media" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:paddingLeft="20dp"
+			android:text="@string/mute"
+			android:textColor="@color/black"
+			android:textSize="16sp" />
+
+		<androidx.appcompat.widget.SwitchCompat
+			android:id="@+id/sw_mute"
+			app:track="@drawable/custom_track"
+			android:thumb="@drawable/custom_thumb"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginTop="@dimen/padding_start"
+		android:layout_marginRight="20dp"
+		android:layout_marginBottom="@dimen/padding_start"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:srcCompat="@drawable/ic_media" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:paddingLeft="20dp"
+			android:text="@string/voice_guide"
+			android:textColor="@color/black"
+			android:textSize="16sp" />
+
+		<androidx.appcompat.widget.SwitchCompat
+			android:id="@+id/sw_voice"
+			app:track="@drawable/custom_track"
+			android:thumb="@drawable/custom_thumb"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginTop="@dimen/padding_start"
+		android:layout_marginRight="20dp"
+		android:layout_marginBottom="@dimen/padding_start"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:srcCompat="@drawable/ic_media" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:paddingLeft="20dp"
+			android:text="@string/coach_tips"
+			android:textColor="@color/black"
+			android:textSize="16sp" />
+
+		<androidx.appcompat.widget.SwitchCompat
+			android:id="@+id/sw_coach"
+			app:track="@drawable/custom_track"
+			android:thumb="@drawable/custom_thumb"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_marginTop="16dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="16dp">
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="center">
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/tv_dialog_cancel"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="20dp"
+				android:layout_marginEnd="10dp"
+				android:background="@drawable/bg_btn_cancel"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:paddingVertical="12dp"
+				android:text="@string/cancel"
+				android:textColor="@color/blueLight"
+				android:textSize="16dp" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="center">
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/btn_ok"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="10dp"
+				android:layout_marginEnd="20dp"
+				android:background="@drawable/bg_btn_border_large"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:paddingVertical="12dp"
+				android:text="@string/agree"
+				android:textColor="@color/white"
+				android:textSize="16dp" />
+		</LinearLayout>
+	</LinearLayout>
+
+</LinearLayout>

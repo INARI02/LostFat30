@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.nhn.fitness.ui.activities.SettingGoalActivity">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center|start">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_back_goal_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/back_black"
+            android:tint="@color/grayTextColor" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/title_set_your_weekly_goal"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:layout_marginBottom="16dp"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/content_set_week_goal"
+        android:textColor="@color/black"
+        android:textSize="16dp" />
+
+    <FrameLayout
+        android:background="@drawable/bg_circle_check_large_disable"
+        android:id="@+id/layout_weekly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/weekly_train_day"
+                android:textColor="@color/text_color_title_gray"
+                android:textSize="16dp" />
+
+            <FrameLayout
+                android:id="@+id/btn_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_number_days_of_week"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:text="1,2,... days"
+                    android:textColor="@color/text_color_title_gray"
+                    android:textSize="16dp" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            app:srcCompat="@drawable/ic_arrow_down" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:background="@drawable/bg_circle_check_large_disable"
+        android:id="@+id/layout_first_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/first_day_of_week"
+                android:textColor="@color/text_color_title_gray"
+                android:textSize="16dp" />
+
+            <FrameLayout
+                android:id="@+id/btn_first_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_first_day_of_week"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:text="Sunday"
+                    android:textColor="@color/text_color_title_gray"
+                    android:textSize="16dp" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            app:srcCompat="@drawable/ic_arrow_down" />
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_save"
+        android:fontFamily="sans-serif-medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn_border_large"
+        android:text="@string/btn_save"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+</LinearLayout>

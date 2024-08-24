@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	package="com.nhn.fitness">
+<!--  AIzaSyAQHOhnBWSTR7AaKwSr2r4l3_Qqreefnwg-->
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+	<uses-feature android:name="android.hardware.sensor.stepcounter" android:required="true"/>
+	<uses-feature android:name="android.hardware.sensor.stepdetector" android:required="true"/>
+
+	<application
+		android:exported="true"
+		android:name=".ui.base.BaseApplication"
+		android:icon="@drawable/logo"
+		android:label="@string/app_name"
+		android:screenOrientation="portrait"
+		android:supportsRtl="true"
+		android:theme="@style/AppTheme">
+		<meta-data
+			android:name="com.google.android.geo.API_KEY"
+			android:value="AIzaSyAQHOhnBWSTR7AaKwSr2r4l3_Qqreefnwg"/>
+<!--		<meta-data-->
+<!--			android:name="com.google.android.gms.ads.APPLICATION_ID"-->
+<!--			android:value="@string/admob_app_id"/>-->
+		<uses-library android:name="org.apache.http.legacy" android:required="false"/>
+		<service
+			android:name=".service.MyFirebaseMessagingService"
+			android:stopWithTask="false">
+			<intent-filter>
+				<action android:name="com.google.firebase.MESSAGING_EVENT" />
+			</intent-filter>
+		</service>
+		<activity android:name=".ui.activities.FitSensorActivity"/>
+		<activity android:name=".ui.activities.MapActivity"/>
+		<activity android:name=".ui.activities.RestDayActivity"/>
+		<activity android:name=".ui.activities.ChooseLevelActivity" />
+		<activity android:name=".ui.activities.GuideLevelActivity" />
+		<activity android:name=".ui.activities.GuideGenderActivity" />
+		<activity android:name=".ui.activities.EditTrainingActivity" />
+		<activity android:name=".ui.activities.AddExerciseActivity" />
+		<activity
+			android:name=".ui.activities.ResultActivity"
+			android:theme="@style/FullScreen" />
+		<activity
+			android:name=".ui.activities.RunActivity"
+			android:theme="@style/FullScreen" />
+		<activity android:name=".ui.activities.ChallengeActivity" />
+		<activity android:name=".ui.activities.ReminderActivity" />
+		<activity android:name=".ui.activities.ReplaceActivity" />
+		<activity android:name=".ui.activities.ProfileActivity" />
+		<activity android:name=".ui.activities.TipsListActivity" />
+		<activity android:name=".ui.activities.TipsDetailActivity" />
+		<activity android:name=".ui.activities.EditExerciseActivity" />
+		<activity
+			android:name=".ui.activities.VideoWorkoutActivity"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize" />
+		<activity android:name=".ui.activities.EditPlanActivity" />
+		<activity android:name=".ui.activities.SectionDetailActivity" />
+		<activity
+			android:name=".ui.activities.GuideReminderActivity"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize" />
+		<activity
+			android:name=".ui.activities.GuideGoalActivity"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize" />
+		<activity
+			android:name=".ui.activities.GuideActivity"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize" />
+		<activity
+			android:name=".ui.activities.SettingGoalActivity"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize" />
+		<activity
+			android:name=".ui.activities.HistoryActivity"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize" />
+		<activity
+			android:name=".ui.activities.OnBoardingActivity01"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize" />
+		<activity
+			android:name=".ui.activities.OnBoardingActivity02"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize" />
+		<activity
+			android:name=".ui.activities.OnBoardingActivity03"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize" />
+		<activity
+			android:name=".ui.activities.SplashActivity"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize"
+			android:theme="@style/Theme_AppCompat_Light_NoActionBar_FullScreen"
+			android:exported="true">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".ui.activities.MainActivity"
+			android:screenOrientation="portrait"
+			android:windowSoftInputMode="adjustResize" />
+
+		<receiver android:name=".service.AlarmReceiver"
+			android:exported="true">
+			<intent-filter>
+				<action android:name="com.app.action.alarmmanager" />
+			</intent-filter>
+		</receiver>
+		<receiver android:name=".service.MyBroadcastReceiver"
+			android:exported="true">
+			<intent-filter>
+				<action android:name="com.tuankhaiit.fitness.cancel_notifycation" />
+			</intent-filter>
+		</receiver>
+	</application>
+
+</manifest>
