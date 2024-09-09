@@ -695,43 +695,6 @@
 					android:layout_width="match_parent"
 					android:layout_height="1dp"
 					android:background="#ececec" />
-				<LinearLayout
-					android:gravity="center"
-					android:id="@+id/row_gym_map"
-					style="@style/RowSettings"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:orientation="horizontal"
-					android:padding="8dp">
-
-					<androidx.appcompat.widget.AppCompatImageView
-						android:layout_width="40dp"
-						android:layout_height="40dp"
-						android:layout_gravity="center"
-						android:src="@drawable/ic_place_gym" />
-
-					<androidx.appcompat.widget.AppCompatTextView
-						style="@style/TextSettings"
-						android:layout_width="0dp"
-						android:layout_height="wrap_content"
-						android:layout_gravity="center"
-						android:textColor="@color/black"
-						android:layout_marginStart="12dp"
-						android:layout_weight="1"
-						android:fontFamily="sans-serif"
-						android:text="@string/settings_gym_location"
-						android:textSize="16dp" />
-
-
-					<androidx.appcompat.widget.AppCompatImageView
-						android:src="@drawable/ic_next"
-						android:layout_gravity="center"
-						android:layout_marginEnd="16dp"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"/>
-
-				</LinearLayout>
 				<View
 					android:layout_width="match_parent"
 					android:layout_height="1dp"

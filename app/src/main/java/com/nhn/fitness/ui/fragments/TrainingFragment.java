@@ -79,10 +79,6 @@ public class TrainingFragment extends BaseFragment {
             Intent intent = new Intent(getContext(), TipsListActivity.class);
             startActivity(intent);
         });
-        rootView.findViewById(R.id.tv_view_all).setOnClickListener(view -> {
-            Intent intent = new Intent(getContext(), ChooseLevelActivity.class);
-            startActivityForResult(intent, 123);
-        });
     }
 
     @Override

@@ -93,42 +93,6 @@ public class WorkoutsListFragment extends BaseFragment {
                         GroupViewModel.TYPE_GROUP_SECTION,
                         new GroupSectionModel(
                                 0,
-                                getString(R.string.butt_workout),
-                                new ArrayList<String>() {{
-                                    add("4");
-                                    add("5");
-                                    add("6");
-
-                                }}
-                        )
-                )
-        );
-
-        data.add(
-                new GroupViewModel(
-                        GroupViewModel.TYPE_GROUP_SECTION,
-                        new GroupSectionModel(
-                                0,
-                                getString(R.string.abs_workout),
-                                new ArrayList<String>() {{
-                                    add("1");
-                                    add("2");
-                                    add("3");
-
-                                }}
-                        )
-                )
-        );
-
-
-
-
-
-        data.add(
-                new GroupViewModel(
-                        GroupViewModel.TYPE_GROUP_SECTION,
-                        new GroupSectionModel(
-                                0,
                                 getString(R.string.thigh_workout),
                                 new ArrayList<String>() {{
                                     add("8");
