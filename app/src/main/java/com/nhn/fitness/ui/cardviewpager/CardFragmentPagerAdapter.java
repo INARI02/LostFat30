@@ -20,7 +20,7 @@ public class CardFragmentPagerAdapter extends FragmentStatePagerAdapter implemen
         fragments = new ArrayList<>();
         this.baseElevation = baseElevation;
 
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i < 2; i++) {
             addCardFragment(CardFragment.getInstance(i));
         }
     }

@@ -30,14 +30,6 @@ public class GuideLevelActivity extends BaseActivity {
             AppSettings.getInstance().setLevel(1);
             gotoNext();
         });
-        findViewById(R.id.card_2).setOnClickListener(view -> {
-            AppSettings.getInstance().setLevel(2);
-            gotoNext();
-        });
-        findViewById(R.id.card_3).setOnClickListener(view -> {
-            AppSettings.getInstance().setLevel(3);
-            gotoNext();
-        });
     }
 
     private void initViews() {

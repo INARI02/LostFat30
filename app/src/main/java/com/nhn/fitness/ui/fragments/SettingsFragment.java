@@ -214,9 +214,6 @@ public class SettingsFragment extends BaseFragment implements DialogResultListen
         rootView.findViewById(R.id.row_restart_progress).setOnClickListener(view -> {
             showRestartProgressDialog();
         });
-        rootView.findViewById(R.id.row_gym_map).setOnClickListener(view ->{
-           startActivity(new Intent(getActivity(), MapActivity.class));
-        });
         rootView.findViewById(R.id.row_feet).setOnClickListener(view -> {
             startActivity(new Intent(getActivity(), FitSensorActivity.class));
         });

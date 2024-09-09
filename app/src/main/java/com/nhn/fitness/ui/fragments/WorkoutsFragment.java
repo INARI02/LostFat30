@@ -61,16 +61,13 @@ public class WorkoutsFragment extends BaseFragment {
             super(fm);
         }
 
+        @NonNull
         @Override
         public Fragment getItem(int i) {
-            switch (i) {
-                case 0:
-                    return new WorkoutsListFragment();
-                case 1:
-                    return new RountinesListFragment();
-                default:
-                    return new WorkoutsListFragment();
+            if (i == 1) {
+                return new RountinesListFragment();
             }
+            return new WorkoutsListFragment();
         }
 
         @Override

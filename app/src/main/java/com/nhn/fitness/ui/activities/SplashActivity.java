@@ -61,7 +61,7 @@ public class SplashActivity extends BaseActivity implements DatabaseListener {
 
             // Init Database
             AppSettings.getInstance().setLastVersion(BuildConfig.VERSION_CODE);
-        }else{
+        } else {
             mHandler = new Handler();
             r = new Runnable() {
                 @Override
@@ -74,8 +74,6 @@ public class SplashActivity extends BaseActivity implements DatabaseListener {
             mHandler.postDelayed(r, timeout);
 
         }
-
-
     }
 
     private void gotoHome() {
@@ -84,12 +82,14 @@ public class SplashActivity extends BaseActivity implements DatabaseListener {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         finish();
     }
+
     private void gotoNext() {
         Intent intent = new Intent(this, OnBoardingActivity01.class);
         startActivity(intent);
         overridePendingTransition(0, 0);
         finish();
     }
+
 //    private void gotoGuide() {
 //        Intent intent = new Intent(this, GuideGenderActivity.class);
 //        startActivity(intent);
