@@ -1,10 +1,12 @@
 package com.nhn.fitness.ui.activities;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -13,10 +15,16 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.nhn.fitness.R;
 import com.nhn.fitness.service.ApiService;
@@ -42,7 +50,7 @@ import retrofit2.Response;
 
 public class FitSensorActivity extends BaseActivity implements SensorEventListener {
     final static int DEFAULT_GOAL = 10000;
-    private TextView stepsView, tvTotal, tvFit,tvUnit;
+    private TextView stepsView, tvTotal, tvFit, tvUnit;
     private PieModel sliceGoal, sliceCurrent;
     private PieChart pieChart;
     private BarChart barChart;
@@ -52,13 +60,26 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
     private int todayOffset, total_start, goal, since_boot, total_days;
     public final static NumberFormat formatter = NumberFormat.getInstance(Locale.getDefault());
     private boolean showSteps = true;
+    private Sensor mSensor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fit_sensor);
+        checkNeededPermission();
         initViews();
         initEvents();
+    }
+
+    private void checkNeededPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACTIVITY_RECOGNITION},
+                        1);
+            }
+        }
     }
 
     private void initEvents() {
@@ -66,19 +87,19 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
     }
 
     private void initViews() {
-          //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (Build.VERSION.SDK_INT >= 26) {
             NotificationFit.startForegroundService(this,
                     new Intent(this, SensorEventListener.class));
         } else {
-           startService(new Intent(this, SensorEventListener.class));
+            startService(new Intent(this, SensorEventListener.class));
         }
         tvUnit = findViewById(R.id.unit);
-          tvFit = findViewById(R.id.tv_fit);
-          tvTotal = findViewById(R.id.tv_fit_total);
-          stepsView = findViewById(R.id.steps);
-          pieChart = findViewById(R.id.pieGraph);
-         barChart = findViewById(R.id.barGraph);
+        tvFit = findViewById(R.id.tv_fit);
+        tvTotal = findViewById(R.id.tv_fit_total);
+        stepsView = findViewById(R.id.steps);
+        pieChart = findViewById(R.id.pieGraph);
+        barChart = findViewById(R.id.barGraph);
         // slice for the steps taken today
         sliceCurrent = new PieModel("", 0, Color.parseColor("#99CC00"));
         pieChart.addPieSlice(sliceCurrent);
@@ -99,14 +120,14 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
         pieChart.setUsePieRotation(true);
         pieChart.startAnimation();
 
-//        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-//          mSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-//          if (mSensor == null) {
-//              Toast.makeText(this, "No step sensor", Toast.LENGTH_SHORT).show();
-//          } else {
-//              Toast.makeText(this, "Register sensor", Toast.LENGTH_SHORT).show();
-//              sensorManager.registerListener(this,mSensor,SensorManager.SENSOR_DELAY_UI);
-//          }
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        mSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        if (mSensor == null) {
+            showToast("No step sensor");
+        } else {
+            showToast("Register sensor");
+            sensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_UI);
+        }
 
     }
 
@@ -142,6 +163,7 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
             }
         });
     }
+
     private void updatePie() {
         // todayOffset might still be Integer.MIN_VALUE on first start
         int steps_today = Math.max(todayOffset + since_boot, 0);
@@ -154,10 +176,10 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
 //                //deprecated in API 26
 //                v.vibrate(1000);
 //            }
-//            Toast.makeText(this, "Bạn có đang chạy không?", Toast.LENGTH_SHORT).show();
+//            showToast("Bạn có đang chạy không?");
 //        }
         sliceCurrent.setValue(steps_today);
-        Log.i("KMFG", "updatePie: "+   steps_today);
+        Log.i("KMFG", "updatePie: " + steps_today);
         if (goal - steps_today > 0) {
             // goal not reached yet
             if (pieChart.getData().size() == 1) {
@@ -210,7 +232,7 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
             // load some more settings if distance is needed
             SharedPreferences prefs = getSharedPreferences("pedometer", Context.MODE_PRIVATE);
             stepsize = prefs.getFloat("stepsize_value", DEFAULT_STEP_SIZE);
-            stepsize_cm = prefs.getString("stepsize_unit",DEFAULT_STEP_UNIT)
+            stepsize_cm = prefs.getString("stepsize_unit", DEFAULT_STEP_UNIT)
                     .equals("cm");
         }
         barChart.setShowDecimal(!showSteps); // show decimal in distance view only
@@ -243,7 +265,7 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
             barChart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
-                 //   Dialog_Statistics.getDialog(getActivity(), since_boot).show();
+                    //   Dialog_Statistics.getDialog(getActivity(), since_boot).show();
                 }
             });
             barChart.startAnimation();
@@ -275,16 +297,15 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
         updatePie();
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
 
-       SQLiteHelper db = SQLiteHelper.getInstance(this);
+        SQLiteHelper db = SQLiteHelper.getInstance(this);
 
-      //  if (BuildConfig.DEBUG) db.logState();
+        //  if (BuildConfig.DEBUG) db.logState();
         // read todays offset
-       todayOffset = db.getSteps(Utils.getToday());
+        todayOffset = db.getSteps(Utils.getToday());
 
         SharedPreferences prefs = getSharedPreferences("pedometer", Context.MODE_PRIVATE);
 
@@ -304,11 +325,11 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
                             finish();
                         }
                     }).setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(final DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
-                }
-            }).create().show();
+                        @Override
+                        public void onClick(final DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    }).create().show();
         } else {
             sm.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI, 0);
         }
@@ -322,6 +343,7 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
 
         stepsDistanceChanged();
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -335,5 +357,16 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
         SQLiteHelper db = SQLiteHelper.getInstance(this);
         db.saveCurrentSteps(since_boot);
         db.close();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            //TODO do something
+
+        } else {
+            finish();
+        }
     }
 }

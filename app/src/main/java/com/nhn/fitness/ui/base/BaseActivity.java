@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -164,6 +165,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         updateLocale();
+    }
+
+    protected void showToast(String message) {
+        // Show toast message
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void updateLocale() {

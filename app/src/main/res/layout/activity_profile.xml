@@ -37,287 +37,444 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:padding="16dp"
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="@dimen/space_2x"
+        android:src="@drawable/avatar_default"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_action_bar">
+        app:layout_constraintTop_toBottomOf="@id/profile_action_bar" />
 
-        <FrameLayout
-            android:id="@+id/row_change_kg_lb"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_profile_detail"
-            android:paddingVertical="@dimen/_8sdp">
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:id="@+id/row_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:orientation="vertical">
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_profile_detail"
+                android:paddingVertical="@dimen/_8sdp">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Unit"
-                    android:textSize="12dp"
-                    tools:ignore="SpUsage" />
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_unit_kg_lb"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Tên người dùng"
+                        android:textSize="12dp"
+                        tools:ignore="SpUsage" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tên"
+                        android:textSize="16dp"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kg, cm"
-                    android:textSize="16dp"
-                    tools:ignore="SpUsage" />
-            </LinearLayout>
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_down" />
+            </FrameLayout>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:id="@+id/row_email"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_arrow_down" />
-        </FrameLayout>
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_profile_detail"
+                android:paddingVertical="@dimen/_8sdp">
 
-        <FrameLayout
-            android:id="@+id/row_weight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_profile_detail"
-            android:paddingVertical="@dimen/_8sdp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Weight"
-                    android:textSize="12dp" />
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_weight"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Email"
+                        android:textSize="12dp"
+                        tools:ignore="SpUsage" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Không có"
+                        android:textSize="16dp"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="49, 50,... Kg"
-                    android:textSize="16dp" />
-            </LinearLayout>
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_down" />
+            </FrameLayout>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:id="@+id/row_phone"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_arrow_down" />
-        </FrameLayout>
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_profile_detail"
+                android:paddingVertical="@dimen/_8sdp">
 
-        <FrameLayout
-            android:id="@+id/row_height"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_profile_detail"
-            android:paddingVertical="@dimen/_8sdp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Height"
-                    android:textSize="12dp" />
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_height"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Số điện thoại"
+                        android:textSize="12dp"
+                        tools:ignore="SpUsage" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Không có"
+                        android:textSize="16dp"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="160, 170,... Cm"
-                    android:textSize="16dp" />
-            </LinearLayout>
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_down" />
+            </FrameLayout>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:id="@+id/row_change_kg_lb"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_arrow_down" />
-        </FrameLayout>
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_profile_detail"
+                android:paddingVertical="@dimen/_8sdp">
 
-        <FrameLayout
-            android:id="@+id/row_birthday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_profile_detail"
-            android:paddingVertical="@dimen/_8sdp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/year_of_birth"
-                    android:textSize="12dp" />
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_birthday"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Unit"
+                        android:textSize="12dp"
+                        tools:ignore="SpUsage" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_unit_kg_lb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kg, cm"
+                        android:textSize="16dp"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1990-01-01"
-                    android:textSize="16dp" />
-            </LinearLayout>
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_down" />
+            </FrameLayout>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:id="@+id/row_weight"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_arrow_down" />
-        </FrameLayout>
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_profile_detail"
+                android:paddingVertical="@dimen/_8sdp">
 
-        <!--        <RadioGroup-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="7dp"-->
-        <!--            android:orientation="horizontal">-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
 
-        <!--            <androidx.appcompat.widget.AppCompatRadioButton-->
-        <!--                android:id="@+id/rb_kg"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginRight="20dp"-->
-        <!--                android:text="kg, cm"-->
-        <!--                android:textColor="@color/text_gray" />-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Weight"
+                        android:textSize="12dp" />
 
-        <!--            <androidx.appcompat.widget.AppCompatRadioButton-->
-        <!--                android:id="@+id/rb_lb"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:text="lb, ft"-->
-        <!--                android:textColor="@color/text_gray" />-->
-        <!--        </RadioGroup>-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="49, 50,... Kg"
+                        android:textSize="16dp" />
+                </LinearLayout>
 
-        <!--        <androidx.appcompat.widget.AppCompatTextView-->
-        <!--            style="@style/TextTitleProfile"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            android:text="@string/weight"-->
-        <!--            android:textColor="@color/black" />-->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_down" />
+            </FrameLayout>
 
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/row_weight"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:clickable="true"-->
-        <!--            android:focusable="true"-->
-        <!--            android:foreground="?android:attr/selectableItemBackground"-->
-        <!--            android:orientation="vertical">-->
+            <FrameLayout
+                android:id="@+id/row_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_profile_detail"
+                android:paddingVertical="@dimen/_8sdp">
 
-        <!--            <androidx.appcompat.widget.AppCompatTextView-->
-        <!--                android:id="@+id/txt_weight"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginTop="10dp"-->
-        <!--                android:layout_marginBottom="10dp"-->
-        <!--                android:text="170.4 LB"-->
-        <!--                android:textColor="@color/colorAccent"-->
-        <!--                android:textSize="16sp" />-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
 
-        <!--            <View-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="1dp"-->
-        <!--                android:background="#EEEEEE" />-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Height"
+                        android:textSize="12dp" />
 
-        <!--        </LinearLayout>-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="160, 170,... Cm"
+                        android:textSize="16dp" />
+                </LinearLayout>
 
-        <!--        <androidx.appcompat.widget.AppCompatTextView-->
-        <!--            style="@style/TextTitleProfile"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            android:text="@string/height"-->
-        <!--            android:textColor="@color/black" />-->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_down" />
+            </FrameLayout>
 
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/row_height"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:clickable="true"-->
-        <!--            android:focusable="true"-->
-        <!--            android:foreground="?android:attr/selectableItemBackground"-->
-        <!--            android:orientation="vertical">-->
+            <FrameLayout
+                android:id="@+id/row_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_profile_detail"
+                android:paddingVertical="@dimen/_8sdp">
 
-        <!--            <androidx.appcompat.widget.AppCompatTextView-->
-        <!--                android:id="@+id/txt_height"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginTop="10dp"-->
-        <!--                android:layout_marginBottom="10dp"-->
-        <!--                android:text="170.4 FT"-->
-        <!--                android:textColor="@color/colorAccent"-->
-        <!--                android:textSize="16sp" />-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
 
-        <!--            <View-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="1dp"-->
-        <!--                android:background="#EEEEEE" />-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/year_of_birth"
+                        android:textSize="12dp" />
 
-        <!--        </LinearLayout>-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1990-01-01"
+                        android:textSize="16dp" />
+                </LinearLayout>
 
-        <!--        <androidx.appcompat.widget.AppCompatTextView-->
-        <!--            style="@style/TextTitleProfile"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            android:text="@string/year_of_birth"-->
-        <!--            android:textColor="@color/black" />-->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_down" />
+            </FrameLayout>
 
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/row_birthday"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:clickable="true"-->
-        <!--            android:focusable="true"-->
-        <!--            android:foreground="?android:attr/selectableItemBackground"-->
-        <!--            android:orientation="vertical">-->
+            <FrameLayout
+                android:id="@+id/row_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_profile_detail"
+                android:paddingVertical="@dimen/_8sdp">
 
-        <!--            <androidx.appcompat.widget.AppCompatTextView-->
-        <!--                android:id="@+id/txt_birthday"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginTop="10dp"-->
-        <!--                android:layout_marginBottom="10dp"-->
-        <!--                android:text="1990-01-01"-->
-        <!--                android:textColor="@color/colorAccent"-->
-        <!--                android:textSize="16sp" />-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
 
-        <!--            <View-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="1dp"-->
-        <!--                android:background="#EEEEEE" />-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đăng xuất tài khoản"
+                        android:textSize="16dp" />
+                </LinearLayout>
+            </FrameLayout>
 
-    </LinearLayout>
+
+            <!--        <RadioGroup-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="7dp"-->
+            <!--            android:orientation="horizontal">-->
+
+            <!--            <androidx.appcompat.widget.AppCompatRadioButton-->
+            <!--                android:id="@+id/rb_kg"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginRight="20dp"-->
+            <!--                android:text="kg, cm"-->
+            <!--                android:textColor="@color/text_gray" />-->
+
+            <!--            <androidx.appcompat.widget.AppCompatRadioButton-->
+            <!--                android:id="@+id/rb_lb"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="lb, ft"-->
+            <!--                android:textColor="@color/text_gray" />-->
+            <!--        </RadioGroup>-->
+
+            <!--        <androidx.appcompat.widget.AppCompatTextView-->
+            <!--            style="@style/TextTitleProfile"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="16dp"-->
+            <!--            android:text="@string/weight"-->
+            <!--            android:textColor="@color/black" />-->
+
+            <!--        <LinearLayout-->
+            <!--            android:id="@+id/row_weight"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:clickable="true"-->
+            <!--            android:focusable="true"-->
+            <!--            android:foreground="?android:attr/selectableItemBackground"-->
+            <!--            android:orientation="vertical">-->
+
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                android:id="@+id/txt_weight"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="10dp"-->
+            <!--                android:layout_marginBottom="10dp"-->
+            <!--                android:text="170.4 LB"-->
+            <!--                android:textColor="@color/colorAccent"-->
+            <!--                android:textSize="16sp" />-->
+
+            <!--            <View-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="1dp"-->
+            <!--                android:background="#EEEEEE" />-->
+
+            <!--        </LinearLayout>-->
+
+            <!--        <androidx.appcompat.widget.AppCompatTextView-->
+            <!--            style="@style/TextTitleProfile"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="16dp"-->
+            <!--            android:text="@string/height"-->
+            <!--            android:textColor="@color/black" />-->
+
+            <!--        <LinearLayout-->
+            <!--            android:id="@+id/row_height"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:clickable="true"-->
+            <!--            android:focusable="true"-->
+            <!--            android:foreground="?android:attr/selectableItemBackground"-->
+            <!--            android:orientation="vertical">-->
+
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                android:id="@+id/txt_height"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="10dp"-->
+            <!--                android:layout_marginBottom="10dp"-->
+            <!--                android:text="170.4 FT"-->
+            <!--                android:textColor="@color/colorAccent"-->
+            <!--                android:textSize="16sp" />-->
+
+            <!--            <View-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="1dp"-->
+            <!--                android:background="#EEEEEE" />-->
+
+            <!--        </LinearLayout>-->
+
+            <!--        <androidx.appcompat.widget.AppCompatTextView-->
+            <!--            style="@style/TextTitleProfile"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="16dp"-->
+            <!--            android:text="@string/year_of_birth"-->
+            <!--            android:textColor="@color/black" />-->
+
+            <!--        <LinearLayout-->
+            <!--            android:id="@+id/row_birthday"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:clickable="true"-->
+            <!--            android:focusable="true"-->
+            <!--            android:foreground="?android:attr/selectableItemBackground"-->
+            <!--            android:orientation="vertical">-->
+
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                android:id="@+id/txt_birthday"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="10dp"-->
+            <!--                android:layout_marginBottom="10dp"-->
+            <!--                android:text="1990-01-01"-->
+            <!--                android:textColor="@color/colorAccent"-->
+            <!--                android:textSize="16sp" />-->
+
+            <!--            <View-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="1dp"-->
+            <!--                android:background="#EEEEEE" />-->
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
