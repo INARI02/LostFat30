@@ -293,11 +293,23 @@
 	<string name="txt_email_feedback">Email</string>
 	<string name="txt_input_your_email">Input your email</string>
     <string name="this_action_contain_ads">This action contain Ads....</string>
-    <string name="API_KEY">AIzaSyAQHOhnBWSTR7AaKwSr2r4l3_Qqreefnwg</string>
+    <string name="API_KEY">AIzaSyB9Ae2gb8cA-FiDvtdjlFoaeSYjuW2u_is</string>
 	<string name="txt_gym_california_fitness_yoga_machinco">California Fitness và Yoga Machinco</string>
 	<string name="txt_gym_california_fitness_yoga_machinco_address">MAC Plaza, Tầng 5-6, 10 Trần Phú, P. Mộ Lao, Hà Đông, Hà Nội, Việt Nam</string>
 	<string name="txt_california_fitness_yoga_machinco_content">Đây là phòng Gym uy tín nhất khu vực Hà Đông</string>
 	<string name="txt_master_gym_club">Master Gym Club</string>
 	<string name="txt_master_gym_club_address">Tầng 4 nhà H10 ngõ 475 Nguyễn Trãi, Thanh Xuân, Hà Nội</string>
 	<string name="txt_master_gym_club_content">Master Gym Club: Các trang thiết bị phòng tập đều được sản xuất hoặc nhập khẩu từ Châu Âu. </string>
+
+	<!-- Them moi -->
+	<string name="hint_username" translatable="false">Tài khoản</string>
+	<string name="hint_password" translatable="false">Mật khảu</string>
+	<string name="login" translatable="false">Đăng nhập</string>
+	<string name="guide_register" translatable="false"><u>Chưa có tài khoản? Đăng ký ngay</u></string>
+	<string name="register_account" translatable="false">Đăng ký tài khoản</string>
+	<string name="hint_confirm_password" translatable="false">Nhập lại mật khẩu</string>
+	<string name="hint_email" translatable="false">Email</string>
+	<string name="hint_phone" translatable="false">Số điện thoại</string>
+	<string name="register" translatable="false">Đăng ký</string>
+	<string name="hint_name" translatable="false">Tên người </string>
 </resources>

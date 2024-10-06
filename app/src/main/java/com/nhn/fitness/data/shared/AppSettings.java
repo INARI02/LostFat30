@@ -14,6 +14,8 @@ import java.lang.reflect.Type;
 import java.util.Calendar;
 
 public class AppSettings {
+    public static final int NO_ID = -1;
+
     private static final String FIRST_OPEN = "first_open";
     private static final String LAST_VERSION = "last_version";
     private static final String NUMBER_DAYS_OF_WEEKLY = "number_days_of_weekly";
@@ -35,6 +37,9 @@ public class AppSettings {
     private static final String GENDER = "gender";
     private static final String LEVEL = "level";
     private static final String DB_VERSION = "db_version";
+    // *** ADDED FIELD ***
+    private static final String LOGGED_IN = "logged_in";
+    private static final String LOGGED_IN_ID = "logged_in_id";
 
 
     private static AppSettings instance;
@@ -237,5 +242,22 @@ public class AppSettings {
 
     public void setDbVersion(int version) {
         sharedPreferences.edit().putInt(DB_VERSION, version).apply();
+    }
+
+    // *** ADDED METHOD ***
+    public void setLoggedIn(boolean loggedIn) {
+        sharedPreferences.edit().putBoolean(LOGGED_IN, loggedIn).apply();
+    }
+
+    public boolean isLoggedIn() {
+        return sharedPreferences.getBoolean(LOGGED_IN, false);
+    }
+
+    public void setLoggedInId(int id) {
+        sharedPreferences.edit().putInt(LOGGED_IN_ID, id).apply();
+    }
+
+    public int getLoggedInId() {
+        return sharedPreferences.getInt(LOGGED_IN_ID, NO_ID);
     }
 }

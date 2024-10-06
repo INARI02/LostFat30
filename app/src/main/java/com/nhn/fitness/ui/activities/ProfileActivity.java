@@ -1,22 +1,28 @@
 package com.nhn.fitness.ui.activities;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatRadioButton;
 
 import com.nhn.fitness.R;
+import com.nhn.fitness.data.dto.UserDTO;
 import com.nhn.fitness.data.shared.AppSettings;
+import com.nhn.fitness.data.shared.SessionManager;
+import com.nhn.fitness.service.rest.RestApiHelper;
 import com.nhn.fitness.ui.base.BaseActivity;
 import com.nhn.fitness.ui.dialogs.BMIDialogFragment;
 import com.nhn.fitness.ui.dialogs.BirthdayDialog;
+import com.nhn.fitness.ui.dialogs.EditSingleTextDialog;
 import com.nhn.fitness.ui.interfaces.DialogResultListener;
 import com.nhn.fitness.utils.DateUtils;
 import com.nhn.fitness.utils.Utils;
@@ -25,12 +31,19 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class ProfileActivity extends BaseActivity implements DialogResultListener {
 
     private static final String TAG_NAME = ProfileActivity.class.getSimpleName();
     private AppCompatRadioButton rbKg, rbLb;
     private TextView txtWeight, txtHeight, txtBirthday, tvUnitKgLb;
+    private TextView mLogoutTextView, mNameTextView, mEmailTextView, mPhoneTextView;
+    private SessionManager mSessionManager;
+    private RestApiHelper mRestApiHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +82,31 @@ public class ProfileActivity extends BaseActivity implements DialogResultListene
             new BirthdayDialog(this).show(getSupportFragmentManager(), null);
         });
 
+        // Them cac su kien cho thong tin user
+        findViewById(R.id.row_name).setOnClickListener(view -> {
+            new EditSingleTextDialog(mNameTextView.getText().toString(), value -> {
+                String newName = (String) value;
+                mSessionManager.getCurrentUser().setName(newName);
+                postEditUserInfo(newName, mNameTextView);
+            }).show(getSupportFragmentManager(), EditSingleTextDialog.TAG);
+        });
+        findViewById(R.id.row_email).setOnClickListener(view -> {
+            new EditSingleTextDialog(mEmailTextView.getText().toString(), value -> {
+                String newEmail = (String) value;
+                mSessionManager.getCurrentUser().setEmail(newEmail);
+                postEditUserInfo(newEmail, mEmailTextView);
+            }).show(getSupportFragmentManager(), EditSingleTextDialog.TAG);
+        });
+        findViewById(R.id.row_phone).setOnClickListener(view -> {
+            new EditSingleTextDialog(mPhoneTextView.getText().toString(), value -> {
+                String newPhone = (String) value;
+                mSessionManager.getCurrentUser().setPhoneNumber(newPhone);
+                postEditUserInfo(newPhone, mPhoneTextView);
+            }).show(getSupportFragmentManager(), EditSingleTextDialog.TAG);
+        });
+        findViewById(R.id.row_logout).setOnClickListener(view -> {
+            logout();
+        });
     }
 
     private void displayDialogChangeKgLb() {
@@ -149,6 +187,8 @@ public class ProfileActivity extends BaseActivity implements DialogResultListene
     }
 
     private void initViews() {
+        mSessionManager = SessionManager.getInstance();
+        mRestApiHelper = RestApiHelper.getInstance();
 //        Toolbar toolbar = findViewById(R.id.toolBar);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -165,6 +205,16 @@ public class ProfileActivity extends BaseActivity implements DialogResultListene
 
 //        rbKg = findViewById(R.id.rb_kg);
 //        rbLb = findViewById(R.id.rb_lb);
+
+        mNameTextView = findViewById(R.id.tv_name);
+        mEmailTextView = findViewById(R.id.tv_email);
+        mPhoneTextView = findViewById(R.id.tv_phone);
+        mLogoutTextView = findViewById(R.id.tv_logout);
+
+        // Set du lieu cho thong tin user
+        mNameTextView.setText(mSessionManager.getCurrentUser().getName());
+        mEmailTextView.setText(mSessionManager.getCurrentUserMail());
+        mPhoneTextView.setText(mSessionManager.getCurrentUserPhone());
     }
 
     @Override
@@ -185,4 +235,32 @@ public class ProfileActivity extends BaseActivity implements DialogResultListene
         finish();
     }
 
+    // Them cac ham xu ly thong tin user
+    private void logout() {
+        //TODO xoa toan bo thong tin user
+        mSessionManager.cleanSession();
+        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    private void postEditUserInfo(String initialText, TextView editText) {
+        mRestApiHelper.editUserInfo(mSessionManager.getCurrentUser(), new Callback<UserDTO>() {
+            @Override
+            public void onResponse(@NonNull Call<UserDTO> call, @NonNull Response<UserDTO> response) {
+                if (response.isSuccessful()) {
+                    showToast("Cập nhật thông tin thành công");
+                    editText.setText(initialText);
+                } else {
+                    showToast("Có lỗi xảy ra, vui lòng thử lại sau: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<UserDTO> call, @NonNull Throwable t) {
+                showToast("Có lỗi xảy ra, vui lòng thử lại sau: " + t.getMessage());
+            }
+        });
+    }
 }

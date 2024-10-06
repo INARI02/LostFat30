@@ -26,8 +26,6 @@ public class HomePagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0:
-                return new TrainingFragment();
             case 1:
                 return new WorkoutsFragment();
             case 2:

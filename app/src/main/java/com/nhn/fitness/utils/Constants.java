@@ -1,7 +1,7 @@
 package com.nhn.fitness.utils;
 
 public class Constants {
-    public static final String API_KEY = "AIzaSyD1EGSQ7mYlpEj_xYXzGb_phBy-B7ZRuK8";
+    public static final String API_KEY = "AIzaSyB9Ae2gb8cA-FiDvtdjlFoaeSYjuW2u_is";
     public static final float WEIGHT = 70.0f;
     public static final float WAISTLINE = 60.0f;
     public static final float HEIGHT = 165.0f;
