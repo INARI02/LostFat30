@@ -5,6 +5,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.shared.AppSettings;
 import com.nhn.fitness.utils.DateUtils;
 
@@ -145,5 +146,17 @@ public class DayHistoryModel {
         Calendar calendar = (Calendar) Calendar.getInstance().clone();
         calendar.setTime(date);
         return TimeUnit.MILLISECONDS.toDays(calendar.getTime().getTime());
+    }
+
+    public DayHistoryDTO toDTO() {
+        DayHistoryDTO dto = new DayHistoryDTO();
+        dto.setId((int) id);
+        dto.setDate(date);
+        dto.setWeight(weight);
+        dto.setHeight(height);
+        dto.setWaistline(waistline);
+        dto.setCalories(calories);
+        dto.setExercises(exercises);
+        return dto;
     }
 }

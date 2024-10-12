@@ -6,26 +6,40 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.nhn.fitness.R;
+import com.nhn.fitness.data.dto.UserDTO;
 import com.nhn.fitness.data.shared.AppSettings;
+import com.nhn.fitness.data.shared.SessionManager;
+import com.nhn.fitness.service.rest.RestApiHelper;
 import com.nhn.fitness.ui.base.BaseDialog;
 import com.nhn.fitness.ui.interfaces.DialogResultListener;
 import com.nhn.fitness.utils.DateUtils;
 
 import java.util.Calendar;
+import java.util.Date;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BirthdayDialog extends BaseDialog implements DatePicker.OnDateChangedListener {
     private DialogResultListener listener;
     private DatePicker datePicker;
     private long birthday = -1;
     private boolean isSave = false;
+    private com.nhn.fitness.ui.interfaces.Callback callback;
 
     public BirthdayDialog(DialogResultListener listener) {
         this.hasTitle = false;
         this.listener = listener;
+    }
+
+    public void setCallback(com.nhn.fitness.ui.interfaces.Callback callback) {
+        this.callback = callback;
     }
 
     @Override
@@ -57,8 +71,30 @@ public class BirthdayDialog extends BaseDialog implements DatePicker.OnDateChang
 
     private void save() {
         if (birthday != -1) {
-            AppSettings.getInstance().setBirthday(birthday);
-            isSave = true;
+            UserDTO temp = SessionManager.getInstance().getCurrentUser().clone();
+            temp.setBirthdate(new Date(birthday));
+            // Save ngay sinh len server
+            RestApiHelper.getInstance().editUserInfo(temp, new Callback<UserDTO>() {
+                @Override
+                public void onResponse(@NonNull Call<UserDTO> call, @NonNull Response<UserDTO> response) {
+                    if (response.isSuccessful()) {
+                        AppSettings.getInstance().setBirthday(birthday);
+                        isSave = true;
+                        if (callback != null) {
+                            callback.execute(birthday);
+                        }
+                    } else {
+                        // Show error
+                        Toast.makeText(requireContext(), "err: " + response.message(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<UserDTO> call, @NonNull Throwable throwable) {
+                    // Show error
+                    Toast.makeText(requireContext(), "err: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         dismissAllowingStateLoss();
     }

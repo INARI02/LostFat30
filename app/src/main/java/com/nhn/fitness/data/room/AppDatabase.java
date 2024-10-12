@@ -30,6 +30,10 @@ import com.nhn.fitness.data.model.SectionHistory;
 import com.nhn.fitness.data.model.SectionUser;
 import com.nhn.fitness.data.model.Workout;
 import com.nhn.fitness.data.model.WorkoutUser;
+import com.nhn.fitness.data.repositories.DailySectionRepository;
+import com.nhn.fitness.data.repositories.DayHistoryRepository;
+import com.nhn.fitness.data.repositories.ReminderRepository;
+import com.nhn.fitness.data.repositories.SectionHistoryRepository;
 import com.nhn.fitness.ui.base.BaseApplication;
 import com.nhn.fitness.ui.interfaces.DatabaseListener;
 import com.nhn.fitness.utils.Utils;
@@ -99,6 +103,16 @@ public abstract class AppDatabase extends RoomDatabase {
         Log.e("status", "initDatabase");
         insertAllWorkoutUser(listener);
         initReminder();
+    }
+
+    /**
+     * Xoa toan bo du lieu nguoi dung tren database
+     */
+    public void clearUserData() {
+        DailySectionRepository.getInstance().resetAll();
+        DayHistoryRepository.getInstance().deleteAll().subscribe();
+        ReminderRepository.getInstance().deleteAll().subscribe();
+        SectionHistoryRepository.getInstance().deleteAll().subscribe();
     }
 
     @SuppressLint("CheckResult")

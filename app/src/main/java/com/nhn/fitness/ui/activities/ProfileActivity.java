@@ -79,7 +79,11 @@ public class ProfileActivity extends BaseActivity implements DialogResultListene
         findViewById(R.id.row_weight).setOnClickListener(onClickListener);
 
         findViewById(R.id.row_birthday).setOnClickListener(view -> {
-            new BirthdayDialog(this).show(getSupportFragmentManager(), null);
+            BirthdayDialog dialog = new BirthdayDialog(this);
+            dialog.setCallback(value -> {
+                txtBirthday.setText(DateUtils.formatBirthday((long) value));
+            });
+            dialog.show(getSupportFragmentManager(), null);
         });
 
         // Them cac su kien cho thong tin user
@@ -215,6 +219,7 @@ public class ProfileActivity extends BaseActivity implements DialogResultListene
         mNameTextView.setText(mSessionManager.getCurrentUser().getName());
         mEmailTextView.setText(mSessionManager.getCurrentUserMail());
         mPhoneTextView.setText(mSessionManager.getCurrentUserPhone());
+        txtBirthday.setText(DateUtils.formatBirthday(mSessionManager.getCurrentUserBirthdate().getTime()));
     }
 
     @Override

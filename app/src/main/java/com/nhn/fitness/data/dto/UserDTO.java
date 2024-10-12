@@ -2,8 +2,6 @@ package com.nhn.fitness.data.dto;
 
 import androidx.annotation.NonNull;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -126,5 +124,20 @@ public class UserDTO {
     @Override
     public String toString() {
         return "UserDTO{id=" + id + ", age=" + age + ", name='" + name + "', avatarUrl='" + avatarUrl + "', roles=" + roles + ", username='" + username + "', phoneNumber='" + phoneNumber + "', password='" + password + "', birthdate=" + birthdate + ", email='" + email + "'}";
+    }
+
+    public UserDTO clone() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(id);
+        userDTO.setAge(age);
+        userDTO.setName(name);
+        userDTO.setAvatarUrl(avatarUrl);
+        userDTO.setRoles(roles);
+        userDTO.setUsername(username);
+        userDTO.setPhoneNumber(phoneNumber);
+        userDTO.setPassword(password);
+        userDTO.setBirthdate(birthdate);
+        userDTO.setEmail(email);
+        return userDTO;
     }
 }

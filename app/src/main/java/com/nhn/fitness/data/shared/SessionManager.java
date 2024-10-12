@@ -3,6 +3,9 @@ package com.nhn.fitness.data.shared;
 import android.text.TextUtils;
 
 import com.nhn.fitness.data.dto.UserDTO;
+import com.nhn.fitness.data.room.AppDatabase;
+
+import java.util.Date;
 
 public class SessionManager {
     private static SessionManager instance;
@@ -21,6 +24,7 @@ public class SessionManager {
     }
 
     public void cleanSession() {
+        AppDatabase.getInstance().clearUserData();
         currentUser = null;
         appSettings.setLoggedIn(false);
         appSettings.setLoggedInId(AppSettings.NO_ID);
@@ -40,5 +44,9 @@ public class SessionManager {
 
     public String getCurrentUserPhone() {
         return TextUtils.isEmpty(currentUser.getPhoneNumber())? "Không có" : currentUser.getPhoneNumber();
+    }
+
+    public Date getCurrentUserBirthdate() {
+        return (currentUser.getBirthdate() == null)? new Date() : currentUser.getBirthdate();
     }
 }

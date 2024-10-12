@@ -2,6 +2,9 @@ package com.nhn.fitness.service.rest;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.dto.LoginDTO;
 import com.nhn.fitness.data.dto.UserDTO;
 
@@ -16,7 +19,10 @@ public class RestApiHelper {
     private final RestApiService restApiService;
 
     private RestApiHelper() {
-        retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(BASE_URL).build();
+        Gson gson = new GsonBuilder()
+                .setDateFormat("dd/MM/yyyy") // Định dạng ngày tháng
+                .create();
+        retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(gson)).baseUrl(BASE_URL).build();
         restApiService = retrofit.create(RestApiService.class);
     }
 
@@ -43,5 +49,9 @@ public class RestApiHelper {
 
     public void getUserInfo(int id, Callback<UserDTO> callback) {
         restApiService.getUserInfo(id).enqueue(callback);
+    }
+
+    public void saveDayHistory(DayHistoryDTO dayHistoryDTO, Callback<DayHistoryDTO> callback) {
+        restApiService.saveDayHistory(dayHistoryDTO).enqueue(callback);
     }
 }
