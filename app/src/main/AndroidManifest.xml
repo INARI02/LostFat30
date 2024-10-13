@@ -27,7 +27,7 @@
         tools:targetApi="n">
 		<meta-data
 			android:name="com.google.android.geo.API_KEY"
-			android:value="AIzaSyB9Ae2gb8cA-FiDvtdjlFoaeSYjuW2u_is"/>
+			android:value="AIzaSyDcGN6UVJh0VwOh8MUWsYMGfF1P0omBdKI"/>
 <!--		<meta-data-->
 <!--			android:name="com.google.android.gms.ads.APPLICATION_ID"-->
 <!--			android:value="@string/admob_app_id"/>-->

@@ -6,7 +6,7 @@ android {
     compileSdkVersion 30
     defaultConfig {
         applicationId "com.nhn.fitness"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 9
         versionName "1.2"
