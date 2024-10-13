@@ -720,7 +720,7 @@
 						android:layout_marginStart="12dp"
 						android:layout_weight="1"
 						android:fontFamily="sans-serif"
-						android:text="@string/settings_gym_location"
+						android:text="@string/settings_map"
 						android:textSize="16dp" />
 
 

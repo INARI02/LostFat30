@@ -27,6 +27,9 @@ public class DayHistoryDTO {
     @SerializedName("exercises")
     @Expose
     private int exercises = 0;
+    @SerializedName("userId")
+    @Expose
+    private int userId;
 
     public void setId(int id) {
         this.id = id;
@@ -82,5 +85,13 @@ public class DayHistoryDTO {
 
     public int getExercises() {
         return exercises;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

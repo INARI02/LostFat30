@@ -1,7 +1,16 @@
 package com.nhn.fitness.data.repositories;
 
+import static com.nhn.fitness.data.shared.AppSettings.DEBUG_REPO_TAG;
+
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.nhn.fitness.data.dto.SectionHistoryDTO;
 import com.nhn.fitness.data.model.SectionHistory;
 import com.nhn.fitness.data.room.AppDatabase;
+import com.nhn.fitness.data.shared.SessionManager;
+import com.nhn.fitness.service.rest.RestApiHelper;
 import com.nhn.fitness.utils.Utils;
 
 import java.util.ArrayList;
@@ -13,6 +22,9 @@ import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SectionHistoryRepository {
     private static SectionHistoryRepository instance;
@@ -64,6 +76,25 @@ public class SectionHistoryRepository {
     }
 
     public Completable insert(SectionHistory sectionHistory) {
+        SectionHistoryDTO sectionHistoryDTO = sectionHistory.toDTO();
+        sectionHistoryDTO.setUserId(SessionManager.getInstance().getCurrentUser().getId());
+        RestApiHelper.getInstance().saveSectionHistory(sectionHistoryDTO, new Callback<SectionHistoryDTO>() {
+            @Override
+            public void onResponse(@NonNull Call<SectionHistoryDTO> call, @NonNull Response<SectionHistoryDTO> response) {
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SectionHistoryDTO> call, @NonNull Throwable t) {
+                Log.d(DEBUG_REPO_TAG, "onFailure: " + t.getMessage());
+            }
+        });
+        return AppDatabase.getInstance().sectionHistoryDao().insert(sectionHistory)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io());
+    }
+
+    public Completable insertFetchedData(SectionHistory sectionHistory) {
         return AppDatabase.getInstance().sectionHistoryDao().insert(sectionHistory)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io());

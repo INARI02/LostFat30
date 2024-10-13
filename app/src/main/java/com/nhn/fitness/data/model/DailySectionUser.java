@@ -9,6 +9,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.nhn.fitness.data.dto.DailySectionUserDTO;
+
 @Entity(tableName = "daily_section_user")
 public class DailySectionUser implements Parcelable {
     @PrimaryKey
@@ -141,5 +143,17 @@ public class DailySectionUser implements Parcelable {
             return new DailySectionUser[size];
         }
     };
+
+    public DailySectionUserDTO toDTO() {
+        DailySectionUserDTO dto = new DailySectionUserDTO();
+        dto.setId(id);
+        dto.setLevel(level);
+        dto.setDay(day);
+        dto.setProgress(progress);
+        dto.setLocked(locked);
+        dto.setRestDay(isRestDay);
+        dto.setCompleted(completed);
+        return dto;
+    }
 }
 

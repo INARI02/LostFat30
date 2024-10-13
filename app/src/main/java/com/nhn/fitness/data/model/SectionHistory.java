@@ -8,6 +8,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.nhn.fitness.data.dto.SectionHistoryDTO;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -154,4 +156,16 @@ public class SectionHistory implements Parcelable {
             return new SectionHistory[size];
         }
     };
+
+    public SectionHistoryDTO toDTO() {
+        SectionHistoryDTO dto = new SectionHistoryDTO();
+        dto.setId(id);
+        dto.setCalendar(calendar.getTimeInMillis());
+        dto.setTitle(title);
+        dto.setTotalTime(totalTime);
+        dto.setCalories(calories);
+        dto.setSectionId(sectionId);
+        dto.setThumb(thumb);
+        return dto;
+    }
 }

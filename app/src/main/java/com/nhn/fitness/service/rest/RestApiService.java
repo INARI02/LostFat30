@@ -1,7 +1,12 @@
 package com.nhn.fitness.service.rest;
 
+import com.nhn.fitness.data.dto.DailySectionUserDTO;
+import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.dto.LoginDTO;
+import com.nhn.fitness.data.dto.SectionHistoryDTO;
 import com.nhn.fitness.data.dto.UserDTO;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,4 +27,22 @@ public interface RestApiService {
 
     @GET("/user/info/{id}")
     Call<UserDTO> getUserInfo(@Path("id") int id);
+
+    @POST("/api/day_history")
+    Call<DayHistoryDTO> saveDayHistory(@Body DayHistoryDTO dayHistoryDTO);
+
+    @GET("/api/day_history/{userId}")
+    Call<List<DayHistoryDTO>> getAllDayHistory(@Path("userId") int userId);
+
+    @POST("/api/daily_section_user")
+    Call<DailySectionUserDTO> saveDailySectionUser(@Body DailySectionUserDTO dailySectionUserDTO);
+
+    @GET("/api/daily_section_user/{userId}")
+    Call<List<DailySectionUserDTO>> getDailySectionUser(@Path("userId") int userId);
+
+    @POST("/api/section_history")
+    Call<SectionHistoryDTO> saveSectionHistory(@Body SectionHistoryDTO sectionHistoryDTO);
+
+    @GET("/api/section_history/{userId}")
+    Call<List<SectionHistoryDTO>> getSectionHistories(@Path("userId") int userId);
 }

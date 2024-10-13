@@ -15,6 +15,7 @@ import java.util.Calendar;
 
 public class AppSettings {
     public static final int NO_ID = -1;
+    public static final String DEBUG_REPO_TAG = "DEBUG_REPO";
 
     private static final String FIRST_OPEN = "first_open";
     private static final String LAST_VERSION = "last_version";

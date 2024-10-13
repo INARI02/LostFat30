@@ -19,6 +19,9 @@ import com.nhn.fitness.data.dao.ReminderDao;
 import com.nhn.fitness.data.dao.SectionHistoryDao;
 import com.nhn.fitness.data.dao.SectionUserDao;
 import com.nhn.fitness.data.dao.WorkoutUserDao;
+import com.nhn.fitness.data.dto.DailySectionUserDTO;
+import com.nhn.fitness.data.dto.DayHistoryDTO;
+import com.nhn.fitness.data.dto.SectionHistoryDTO;
 import com.nhn.fitness.data.model.ChallengeDay;
 import com.nhn.fitness.data.model.ChallengeDayUser;
 import com.nhn.fitness.data.model.DailySection;
@@ -34,15 +37,22 @@ import com.nhn.fitness.data.repositories.DailySectionRepository;
 import com.nhn.fitness.data.repositories.DayHistoryRepository;
 import com.nhn.fitness.data.repositories.ReminderRepository;
 import com.nhn.fitness.data.repositories.SectionHistoryRepository;
+import com.nhn.fitness.data.shared.SessionManager;
+import com.nhn.fitness.service.rest.RestApiHelper;
 import com.nhn.fitness.ui.base.BaseApplication;
+import com.nhn.fitness.ui.interfaces.Callback;
 import com.nhn.fitness.ui.interfaces.DatabaseListener;
+import com.nhn.fitness.utils.DataConverter;
 import com.nhn.fitness.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Response;
 
 @Database(entities = {SectionUser.class, WorkoutUser.class, DayHistoryModel.class, Reminder.class, ChallengeDayUser.class, SectionHistory.class, DailySectionUser.class},
         version = 3,
@@ -113,6 +123,66 @@ public abstract class AppDatabase extends RoomDatabase {
         DayHistoryRepository.getInstance().deleteAll().subscribe();
         ReminderRepository.getInstance().deleteAll().subscribe();
         SectionHistoryRepository.getInstance().deleteAll().subscribe();
+    }
+
+    public void fetchAllData(com.nhn.fitness.ui.interfaces.Callback onFetchDataDone) {
+        final RestApiHelper restApiHelper = RestApiHelper.getInstance();
+        final int userId = SessionManager.getInstance().getCurrentUser().getId();
+        restApiHelper.getAllDayHistory(userId, new retrofit2.Callback<List<DayHistoryDTO>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<DayHistoryDTO>> call, @NonNull Response<List<DayHistoryDTO>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        for (DayHistoryDTO dayHistoryDTO : response.body()) {
+                            DayHistoryModel dayHistoryModel = DataConverter.toModel(dayHistoryDTO);
+                            DayHistoryRepository.getInstance().insertFetchedData(dayHistoryModel).subscribe();
+                        }
+                    }
+                }
+                restApiHelper.getDailySectionUser(userId, new retrofit2.Callback<List<DailySectionUserDTO>>() {
+                    @Override
+                    public void onResponse(@NonNull Call<List<DailySectionUserDTO>> call, @NonNull Response<List<DailySectionUserDTO>> response) {
+                        if (response.isSuccessful()) {
+                            if (response.body() != null) {
+                                for (DailySectionUserDTO dayHistoryDTO : response.body()) {
+                                    DailySectionUser dayHistoryModel = DataConverter.toModel(dayHistoryDTO);
+                                    DailySectionRepository.getInstance().updateFetchedData(dayHistoryModel).subscribe();
+                                }
+                            }
+                        }
+                        restApiHelper.getSectionHistories(userId, new retrofit2.Callback<List<SectionHistoryDTO>>() {
+                            @Override
+                            public void onResponse(Call<List<SectionHistoryDTO>> call, Response<List<SectionHistoryDTO>> response) {
+                                if (response.isSuccessful()) {
+                                    if (response.body() != null) {
+                                        for (SectionHistoryDTO sectionHistoryDTO : response.body()) {
+                                            SectionHistory sectionHistory = DataConverter.toModel(sectionHistoryDTO);
+                                            SectionHistoryRepository.getInstance().insertFetchedData(sectionHistory).subscribe();
+                                        }
+                                    }
+                                }
+                                onFetchDataDone.execute(null);
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<SectionHistoryDTO>> call, Throwable t) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<List<DailySectionUserDTO>> call, @NonNull Throwable t) {
+                        Log.d("DEBUG_REPO_TAG", "onFailure: " + t.getMessage());
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<DayHistoryDTO>> call, @NonNull Throwable t) {
+                Log.d("DEBUG_REPO_TAG", "onFailure: " + t.getMessage());
+            }
+        });
     }
 
     @SuppressLint("CheckResult")

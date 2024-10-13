@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.nhn.fitness.R;
 import com.nhn.fitness.data.dto.UserDTO;
+import com.nhn.fitness.data.room.AppDatabase;
 import com.nhn.fitness.data.shared.AppSettings;
 import com.nhn.fitness.data.shared.SessionManager;
 import com.nhn.fitness.service.rest.RestApiHelper;
@@ -69,9 +70,12 @@ public class LoginActivity extends BaseActivity {
                         SessionManager.getInstance().setCurrentUser(body);
                         AppSettings.getInstance().setLoggedIn(true);
                         AppSettings.getInstance().setLoggedInId(body.getId());
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        // fetch data
+                        AppDatabase.getInstance().fetchAllData(v -> {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        });
                     } else {
                         showToast("Tài khoản hoặc mật khẩu không chính xác/hoặc không tồn tại");
                     }

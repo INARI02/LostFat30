@@ -1,7 +1,16 @@
 package com.nhn.fitness.data.repositories;
 
+import static com.nhn.fitness.data.shared.AppSettings.DEBUG_REPO_TAG;
+
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.model.DayHistoryModel;
 import com.nhn.fitness.data.room.AppDatabase;
+import com.nhn.fitness.data.shared.SessionManager;
+import com.nhn.fitness.service.rest.RestApiHelper;
 import com.nhn.fitness.utils.DateUtils;
 import com.nhn.fitness.utils.Utils;
 
@@ -15,9 +24,19 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DayHistoryRepository {
     private static DayHistoryRepository instance;
+    private final RestApiHelper restApiHelper;
+    private final SessionManager sessionManager;
+
+    private DayHistoryRepository() {
+        restApiHelper = RestApiHelper.getInstance();
+        sessionManager = SessionManager.getInstance();
+    }
 
     public static DayHistoryRepository getInstance() {
         if (instance == null) {
@@ -104,12 +123,53 @@ public class DayHistoryRepository {
     }
 
     public Completable update(DayHistoryModel dayHistoryModel) {
+        DayHistoryDTO dayHistoryDTO = dayHistoryModel.toDTO();
+        dayHistoryDTO.setUserId(sessionManager.getCurrentUser().getId());
+        restApiHelper.saveDayHistory(dayHistoryDTO, new Callback<DayHistoryDTO>() {
+            @Override
+            public void onResponse(@NonNull Call<DayHistoryDTO> call, @NonNull Response<DayHistoryDTO> response) {
+                if (response.isSuccessful()) {
+
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<DayHistoryDTO> call, @NonNull Throwable t) {
+                Log.d(DEBUG_REPO_TAG, "onFailure: " + t.getMessage());
+            }
+        });
         return AppDatabase.getInstance().dayHistoryDao().update(dayHistoryModel)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Completable insert(DayHistoryModel dayHistoryModel) {
+        DayHistoryDTO dayHistoryDTO = dayHistoryModel.toDTO();
+        dayHistoryDTO.setUserId(sessionManager.getCurrentUser().getId());
+        restApiHelper.saveDayHistory(dayHistoryDTO, new Callback<DayHistoryDTO>() {
+            @Override
+            public void onResponse(@NonNull Call<DayHistoryDTO> call, @NonNull Response<DayHistoryDTO> response) {
+                if (response.isSuccessful()) {
+
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<DayHistoryDTO> call, @NonNull Throwable t) {
+                Log.d(DEBUG_REPO_TAG, "onFailure: " + t.getMessage());
+            }
+        });
+        return AppDatabase.getInstance().dayHistoryDao().insert(dayHistoryModel)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * Ham chi goi khi fetch du lieu tu server ve
+     * @param dayHistoryModel
+     * @return
+     */
+    public Completable insertFetchedData(DayHistoryModel dayHistoryModel) {
         return AppDatabase.getInstance().dayHistoryDao().insert(dayHistoryModel)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

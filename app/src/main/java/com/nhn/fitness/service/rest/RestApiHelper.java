@@ -4,9 +4,13 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.nhn.fitness.data.dto.DailySectionUserDTO;
 import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.dto.LoginDTO;
+import com.nhn.fitness.data.dto.SectionHistoryDTO;
 import com.nhn.fitness.data.dto.UserDTO;
+
+import java.util.List;
 
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -53,5 +57,25 @@ public class RestApiHelper {
 
     public void saveDayHistory(DayHistoryDTO dayHistoryDTO, Callback<DayHistoryDTO> callback) {
         restApiService.saveDayHistory(dayHistoryDTO).enqueue(callback);
+    }
+
+    public void getAllDayHistory(int userId, Callback<List<DayHistoryDTO>> callback) {
+        restApiService.getAllDayHistory(userId).enqueue(callback);
+    }
+
+    public void saveDailySectionUser(DailySectionUserDTO dailySectionUserDTO, Callback<DailySectionUserDTO> callback) {
+        restApiService.saveDailySectionUser(dailySectionUserDTO).enqueue(callback);
+    }
+
+    public void getDailySectionUser(int userId, Callback<List<DailySectionUserDTO>> callback) {
+        restApiService.getDailySectionUser(userId).enqueue(callback);
+    }
+
+    public void saveSectionHistory(SectionHistoryDTO sectionHistoryDTO, Callback<SectionHistoryDTO> callback) {
+        restApiService.saveSectionHistory(sectionHistoryDTO).enqueue(callback);
+    }
+
+    public void getSectionHistories(int userId, Callback<List<SectionHistoryDTO>> callback) {
+        restApiService.getSectionHistories(userId).enqueue(callback);
     }
 }

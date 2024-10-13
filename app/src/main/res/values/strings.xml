@@ -293,7 +293,7 @@
 	<string name="txt_email_feedback">Email</string>
 	<string name="txt_input_your_email">Input your email</string>
     <string name="this_action_contain_ads">This action contain Ads....</string>
-    <string name="API_KEY">AIzaSyB9Ae2gb8cA-FiDvtdjlFoaeSYjuW2u_is</string>
+    <string name="API_KEY">AIzaSyDcGN6UVJh0VwOh8MUWsYMGfF1P0omBdKI</string>
 	<string name="txt_gym_california_fitness_yoga_machinco">California Fitness và Yoga Machinco</string>
 	<string name="txt_gym_california_fitness_yoga_machinco_address">MAC Plaza, Tầng 5-6, 10 Trần Phú, P. Mộ Lao, Hà Đông, Hà Nội, Việt Nam</string>
 	<string name="txt_california_fitness_yoga_machinco_content">Đây là phòng Gym uy tín nhất khu vực Hà Đông</string>
@@ -312,4 +312,5 @@
 	<string name="hint_phone" translatable="false">Số điện thoại</string>
 	<string name="register" translatable="false">Đăng ký</string>
 	<string name="hint_name" translatable="false">Tên người </string>
+	<string name="settings_map">Map</string>
 </resources>
