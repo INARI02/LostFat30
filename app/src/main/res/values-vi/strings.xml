@@ -58,6 +58,7 @@
     <string name="seconds">giây</string>
     <string name="take_a_rest_next">Nghỉ ngơi. Kế tiếp.</string>
     <string name="start">Bắt đầu</string>
+    <string name="stop">Dừng lại</string>
     <string name="this_language_not_support">Ngôn ngữ này không được hỗ trợ!</string>
     <string name="did_you_hear_the_test_voice">Bạn đã nghe giọng nói thử chưa?</string>
     <string name="please_choose_voide_engine">Vui lòng chọn công cụ thoại hướng dẫn:</string>

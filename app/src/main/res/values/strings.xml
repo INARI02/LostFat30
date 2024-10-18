@@ -67,6 +67,7 @@
 	<string name="seconds">seconds</string>
 	<string name="take_a_rest_next">Take a rest. Next.</string>
 	<string name="start">Start</string>
+	<string name="stop">Stop</string>
 	<string name="this_language_not_support">This language is not supported!</string>
 	<string name="did_you_hear_the_test_voice">Have you hear the voice test yet?</string>
 	<string name="please_choose_voide_engine">Please choose guide voice engine:</string>

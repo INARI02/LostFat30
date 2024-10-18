@@ -8,26 +8,35 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.nhn.fitness.R;
 import com.nhn.fitness.data.model.LocationPoint;
 import com.nhn.fitness.service.map.MapService;
+import com.nhn.fitness.ui.fragments.InfoMapFragment;
 import com.nhn.fitness.ui.fragments.MapManager;
+import com.nhn.fitness.ui.interfaces.MapDataCallback;
 import com.nhn.fitness.ui.interfaces.OnActionCallBack;
 
 import java.util.List;
 
 public class MapActivity extends AppCompatActivity implements OnActionCallBack {
+    private static final int INFO_CONTAINER_ID = R.id.info_container;
     private GoogleMap mGoogleMap;
     private MapService mMapService;
+    private BottomSheetBehavior<LinearLayout> mBottomSheetBehavior;
+    private InfoMapFragment mInfoMapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +61,7 @@ public class MapActivity extends AppCompatActivity implements OnActionCallBack {
     @Override
     protected void onStart() {
         super.onStart();
-        mMapService.start();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mMapService.stop();
+        replaceFragment(mInfoMapFragment, INFO_CONTAINER_ID, "InfoMapFragment", false, -1);
     }
 
     private void initViews() {
@@ -72,13 +75,22 @@ public class MapActivity extends AppCompatActivity implements OnActionCallBack {
                 MapManager.getInstance().setCallBack(MapActivity.this);
             }
         });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
-                requestPermissions(new String[]{
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                },101);
-            }
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            }, 101);
         }
+        mBottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottom_sheet_info));
+        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        mInfoMapFragment = new InfoMapFragment();
+        mInfoMapFragment.setActivityCallback(ignore -> {
+            if (mMapService.isRunning()) {
+                mMapService.stop();
+                mGoogleMap.clear();
+            } else {
+                mMapService.start();
+            }
+        });
     }
 
     private void initEvents() {
@@ -96,6 +108,17 @@ public class MapActivity extends AppCompatActivity implements OnActionCallBack {
                 mGoogleMap.addPolyline(polylineOptions);
             }
         });
+        mMapService.setMapDataCallback(new MapDataCallback() {
+            @Override
+            public void onDataChanged(float speed, float distance, double calories) {
+                mInfoMapFragment.updateMapData(speed, distance, calories);
+            }
+
+            @Override
+            public void onTimeChanged(long time) {
+                mInfoMapFragment.updateRunningTime(time);
+            }
+        });
     }
 
     private void showDirection(LatLng start, LatLng end) {
@@ -108,5 +131,24 @@ public class MapActivity extends AppCompatActivity implements OnActionCallBack {
         for (PolylineOptions polylineOption : polylineOptions) {
             mGoogleMap.addPolyline(polylineOption);
         }
+    }
+
+    private void replaceFragment(
+            Fragment fragment, int containerViewId,
+            String TAG, boolean addToBackStack,
+            int transit
+    ) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(containerViewId, fragment, TAG);
+        commitTransaction(transaction, TAG, addToBackStack, transit);
+    }
+
+    private void commitTransaction(
+            FragmentTransaction transaction, String TAG,
+            boolean addToBackStack, int transit
+    ) {
+        if (addToBackStack) transaction.addToBackStack(TAG);
+        if (transit != -1) transaction.setTransition(transit);
+        transaction.commitAllowingStateLoss();
     }
 }

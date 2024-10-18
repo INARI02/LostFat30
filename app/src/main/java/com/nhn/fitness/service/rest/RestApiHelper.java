@@ -9,6 +9,7 @@ import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.dto.LoginDTO;
 import com.nhn.fitness.data.dto.SectionHistoryDTO;
 import com.nhn.fitness.data.dto.UserDTO;
+import com.nhn.fitness.data.dto.UserWorkoutInfoDTO;
 
 import java.util.List;
 
@@ -77,5 +78,9 @@ public class RestApiHelper {
 
     public void getSectionHistories(int userId, Callback<List<SectionHistoryDTO>> callback) {
         restApiService.getSectionHistories(userId).enqueue(callback);
+    }
+
+    public void saveUserWorkoutInfo(UserWorkoutInfoDTO userWorkoutInfoDTO, Callback<UserWorkoutInfoDTO> callback) {
+        restApiService.saveUserWorkoutInfo(userWorkoutInfoDTO).enqueue(callback);
     }
 }

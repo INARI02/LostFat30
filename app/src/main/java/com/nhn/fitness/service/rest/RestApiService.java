@@ -5,6 +5,7 @@ import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.dto.LoginDTO;
 import com.nhn.fitness.data.dto.SectionHistoryDTO;
 import com.nhn.fitness.data.dto.UserDTO;
+import com.nhn.fitness.data.dto.UserWorkoutInfoDTO;
 
 import java.util.List;
 
@@ -45,4 +46,7 @@ public interface RestApiService {
 
     @GET("/api/section_history/{userId}")
     Call<List<SectionHistoryDTO>> getSectionHistories(@Path("userId") int userId);
+
+    @POST("/api/user_info_workout")
+    Call<UserWorkoutInfoDTO> saveUserWorkoutInfo(@Body UserWorkoutInfoDTO userWorkoutInfoDTO);
 }
