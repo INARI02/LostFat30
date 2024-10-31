@@ -122,6 +122,12 @@ public class DayHistoryRepository {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Single<DayHistoryModel> getCurrentDay() {
+        return AppDatabase.getInstance().dayHistoryDao().getCurrentWeightAndHeight()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
     public Completable update(DayHistoryModel dayHistoryModel) {
         DayHistoryDTO dayHistoryDTO = dayHistoryModel.toDTO();
         dayHistoryDTO.setUserId(sessionManager.getCurrentUser().getId());

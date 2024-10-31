@@ -90,6 +90,9 @@ public interface DayHistoryDao {
     @Query("SELECT waistline FROM `day_history` WHERE waistline > 0 ORDER BY id DESC LIMIT 1")
     Flowable<Float> getCurrentWaistline();
 
+    @Query("SELECT * FROM `day_history` ORDER BY id DESC LIMIT 1")
+    Single<DayHistoryModel> getCurrentWeightAndHeight();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insert(DayHistoryModel history);
 

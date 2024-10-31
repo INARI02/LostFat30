@@ -46,7 +46,7 @@ public class DailySectionRepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe(response -> {
-                    for (DailySectionUser dailySectionUser: response) {
+                    for (DailySectionUser dailySectionUser : response) {
                         dailySectionUser.setLocked(true);
                         dailySectionUser.setCompleted(false);
                         dailySectionUser.setProgress(0f);
@@ -79,6 +79,7 @@ public class DailySectionRepository {
 
     /**
      * Chi dung khi fetch data tu server ve
+     *
      * @param dailySectionUser
      * @return
      */

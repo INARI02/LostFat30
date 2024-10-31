@@ -3,6 +3,7 @@ package com.nhn.fitness.utils;
 import android.annotation.SuppressLint;
 
 import com.nhn.fitness.data.model.DayHistoryModel;
+import com.nhn.fitness.data.shared.SessionManager;
 import com.nhn.fitness.ui.lib.horizontalCalendar.DateModel;
 
 import java.text.SimpleDateFormat;
@@ -151,11 +152,12 @@ public class DateUtils {
     }
 
     public static long getIdNow() {
-        return TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis());
+        return TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTimeInMillis()) + SessionManager.getInstance().getCurrentUser().getId();
     }
 
     public static long getIdDay(Calendar calendar) {
-        return TimeUnit.MILLISECONDS.toDays(calendar.getTimeInMillis());
+        // id nay h tuong trung cho tung user nen can ca id user
+        return TimeUnit.MILLISECONDS.toDays(calendar.getTimeInMillis()) + SessionManager.getInstance().getCurrentUser().getId();
     }
 
     public static long getBirthday() {

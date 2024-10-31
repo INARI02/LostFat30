@@ -37,6 +37,7 @@ import com.nhn.fitness.data.repositories.DailySectionRepository;
 import com.nhn.fitness.data.repositories.DayHistoryRepository;
 import com.nhn.fitness.data.repositories.ReminderRepository;
 import com.nhn.fitness.data.repositories.SectionHistoryRepository;
+import com.nhn.fitness.data.shared.AppSettings;
 import com.nhn.fitness.data.shared.SessionManager;
 import com.nhn.fitness.service.rest.RestApiHelper;
 import com.nhn.fitness.ui.base.BaseApplication;
@@ -129,6 +130,7 @@ public abstract class AppDatabase extends RoomDatabase {
         final RestApiHelper restApiHelper = RestApiHelper.getInstance();
         final int userId = SessionManager.getInstance().getCurrentUser().getId();
         restApiHelper.getAllDayHistory(userId, new retrofit2.Callback<List<DayHistoryDTO>>() {
+            @SuppressLint("CheckResult")
             @Override
             public void onResponse(@NonNull Call<List<DayHistoryDTO>> call, @NonNull Response<List<DayHistoryDTO>> response) {
                 if (response.isSuccessful()) {
@@ -137,6 +139,12 @@ public abstract class AppDatabase extends RoomDatabase {
                             DayHistoryModel dayHistoryModel = DataConverter.toModel(dayHistoryDTO);
                             DayHistoryRepository.getInstance().insertFetchedData(dayHistoryModel).subscribe();
                         }
+                        DayHistoryRepository.getInstance().getCurrentDay().subscribe((dayHistoryModel, throwable) -> {
+                            if (dayHistoryModel != null) {
+                                AppSettings.getInstance().setHeightDefault(dayHistoryModel.getHeight());
+                                AppSettings.getInstance().setWeightDefault(dayHistoryModel.getWeight());
+                            }
+                        });
                     }
                 }
                 restApiHelper.getDailySectionUser(userId, new retrofit2.Callback<List<DailySectionUserDTO>>() {

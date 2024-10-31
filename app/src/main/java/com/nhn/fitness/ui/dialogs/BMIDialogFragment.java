@@ -151,13 +151,16 @@ public class BMIDialogFragment extends BaseDialog implements UnitTypeChangeListe
 
     private void saveDayHistory() {
         float weight = Float.parseFloat(edtWeight.getText().toString());
+        float height = Float.parseFloat(edtHeight.getText().toString());
         DayHistoryModel dayHistoryModel = DayHistoryRepository.getInstance().getByIdWithoutObserve(DateUtils.getIdNow());
         if (dayHistoryModel == null) {
             dayHistoryModel = new DayHistoryModel((Calendar) Calendar.getInstance().clone());
             dayHistoryModel.setWeight(weight);
+            dayHistoryModel.setHeight(height);
             addDisposable(DayHistoryRepository.getInstance().insert(dayHistoryModel).subscribe());
         } else {
             dayHistoryModel.setWeight(weight);
+            dayHistoryModel.setHeight(height);
             addDisposable(DayHistoryRepository.getInstance().update(dayHistoryModel).subscribe());
         }
     }

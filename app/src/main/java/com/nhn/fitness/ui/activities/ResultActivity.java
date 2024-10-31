@@ -32,13 +32,13 @@ public class ResultActivity extends BaseActivity {
 
 
     private void initEvents() {
-        findViewById(R.id.btn_again).setOnClickListener(view -> {
-
-
-        });
-        findViewById(R.id.btn_share).setOnClickListener(view -> {
-
-        });
+//        findViewById(R.id.btn_again).setOnClickListener(view -> {
+//
+//
+//        });
+//        findViewById(R.id.btn_share).setOnClickListener(view -> {
+//
+//        });
         findViewById(R.id.btn_close).setOnClickListener(view -> {
             finish();
         });

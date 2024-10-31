@@ -83,4 +83,8 @@ public class RestApiHelper {
     public void saveUserWorkoutInfo(UserWorkoutInfoDTO userWorkoutInfoDTO, Callback<UserWorkoutInfoDTO> callback) {
         restApiService.saveUserWorkoutInfo(userWorkoutInfoDTO).enqueue(callback);
     }
+
+    public void deleteAllData(int id, Callback<Void> callback) {
+        restApiService.deleteAllData(id).enqueue(callback);
+    }
 }

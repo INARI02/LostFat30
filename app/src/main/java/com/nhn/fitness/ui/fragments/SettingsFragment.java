@@ -39,6 +39,8 @@ import com.nhn.fitness.data.repositories.SectionHistoryRepository;
 import com.nhn.fitness.data.repositories.SectionRepository;
 import com.nhn.fitness.data.repositories.WorkoutRepository;
 import com.nhn.fitness.data.shared.AppSettings;
+import com.nhn.fitness.data.shared.SessionManager;
+import com.nhn.fitness.service.rest.RestApiHelper;
 import com.nhn.fitness.ui.activities.FitSensorActivity;
 import com.nhn.fitness.ui.activities.MapActivity;
 import com.nhn.fitness.ui.activities.ProfileActivity;
@@ -62,6 +64,9 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
 
+import retrofit2.Call;
+import retrofit2.Response;
+
 
 public class SettingsFragment extends BaseFragment implements DialogResultListener, CompoundButton.OnCheckedChangeListener {
 
@@ -72,7 +77,6 @@ public class SettingsFragment extends BaseFragment implements DialogResultListen
         // Required empty public constructor
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,7 +95,6 @@ public class SettingsFragment extends BaseFragment implements DialogResultListen
             ready = false;
         }
         tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
@@ -143,7 +146,6 @@ public class SettingsFragment extends BaseFragment implements DialogResultListen
         }, AppSettings.getInstance().getEngineDefault().getPackageName());
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void speech(String text) {
         if (tts != null && ready) {
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, UUID.randomUUID().toString());
@@ -161,7 +163,6 @@ public class SettingsFragment extends BaseFragment implements DialogResultListen
         refreshAllView();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initEvents() {
         super.initEvents();
@@ -197,16 +198,14 @@ public class SettingsFragment extends BaseFragment implements DialogResultListen
 //                e.printStackTrace();
 //            }
 //        });
-        rootView.findViewById(R.id.row_test_voice).setOnClickListener(view -> {
-            speech(getResources().getString(R.string.did_you_hear_the_test_voice));
-        });
+//        rootView.findViewById(R.id.row_test_voice).setOnClickListener(view -> {
+//            speech(getResources().getString(R.string.did_you_hear_the_test_voice));
+//        });
 //        rootView.findViewById(R.id.row_engine).setOnClickListener(view -> {
 //            getEngines();
 //        });
-        rootView.findViewById(R.id.row_voice_language).setOnClickListener(view -> {
-           // showEngineLanguageDialog();
-            showEngineLanguageDialog(view);
-        });
+        // showEngineLanguageDialog();
+        rootView.findViewById(R.id.row_voice_language).setOnClickListener(this::showEngineLanguageDialog);
         rootView.findViewById(R.id.row_language).setOnClickListener(this::showLanguageDialog);
         rootView.findViewById(R.id.row_gender).setOnClickListener(view -> {
             showGenderDialog();
@@ -244,7 +243,7 @@ public class SettingsFragment extends BaseFragment implements DialogResultListen
 
     @SuppressLint("CheckResult")
     private void showDeleteAllDataDialog() {
-        Dialog dialog = new Dialog(getContext() ,android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
+        Dialog dialog = new Dialog(requireContext() ,android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_delete_exercise);
@@ -254,6 +253,18 @@ public class SettingsFragment extends BaseFragment implements DialogResultListen
         tvSubTitle.setText(R.string.title_delete_all_data_dialog);
         TextView btDialogOk = (TextView) dialog.findViewById(R.id.tv_dialog_delete);
         btDialogOk.setOnClickListener(view -> {
+            RestApiHelper.getInstance().deleteAllData(SessionManager.getInstance().getCurrentUser().getId(),
+                    new retrofit2.Callback<Void>() {
+                        @Override
+                        public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+
+                        }
+
+                        @Override
+                        public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+
+                        }
+                    });
             DailySectionRepository.getInstance().resetAll();
             DayHistoryRepository.getInstance().deleteAll();
             ReminderRepository.getInstance().deleteAll();
@@ -280,7 +291,7 @@ public class SettingsFragment extends BaseFragment implements DialogResultListen
     }
 
     private void showRestartProgressDialog() {
-        Dialog dialog = new Dialog(getContext(),android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
+        Dialog dialog = new Dialog(requireContext(),android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_delete_exercise);
@@ -290,10 +301,22 @@ public class SettingsFragment extends BaseFragment implements DialogResultListen
         btDialogOk.setText(R.string.ok);
         btDialogOk.setBackgroundResource(R.drawable.bg_btn_border_large);
         btDialogOk.setOnClickListener(view -> {
+            RestApiHelper.getInstance().deleteAllData(SessionManager.getInstance().getCurrentUser().getId(),
+                    new retrofit2.Callback<Void>() {
+                        @Override
+                        public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+
+                        }
+
+                        @Override
+                        public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+
+                        }
+                    });
             DailySectionRepository.getInstance().resetAll();
             Intent intent = new Intent(getContext(), SplashActivity.class);
-            getActivity().finishAffinity();
-            getActivity().startActivity(intent);
+            requireActivity().finishAffinity();
+            requireActivity().startActivity(intent);
         });
         TextView btDialogCancel = (TextView) dialog.findViewById(R.id.tv_dialog_cancel);
         btDialogCancel.setOnClickListener(view1 -> {
