@@ -179,4 +179,10 @@ public class DateUtils {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return simpleDateFormat.format(convertIdToDate(id).getTime());
     }
+
+    @SuppressLint("SimpleDateFormat")
+    public static String formatBirthdayByTime(long time) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return simpleDateFormat.format(time);
+    }
 }

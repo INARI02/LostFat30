@@ -97,10 +97,13 @@ public class SplashActivity extends BaseActivity implements DatabaseListener {
                 if (response.isSuccessful()) {
                     UserDTO body = response.body();
                     SessionManager.getInstance().setCurrentUser(body);
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                    finish();
+                    // fetch data
+                    AppDatabase.getInstance().fetchAllData(v -> {
+                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                        finish();
+                    });
                 } else {
                     showToast("Có lỗi xảy ra khi lấy thông tin người dùng, vui lòng đăng nhập lại");
                     goToLogin();

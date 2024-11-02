@@ -129,6 +129,9 @@ public abstract class AppDatabase extends RoomDatabase {
     public void fetchAllData(com.nhn.fitness.ui.interfaces.Callback onFetchDataDone) {
         final RestApiHelper restApiHelper = RestApiHelper.getInstance();
         final int userId = SessionManager.getInstance().getCurrentUser().getId();
+        // set ngay sinh vao preferences
+        Log.d("MinhNTn", "fetchAllData: " + SessionManager.getInstance().getCurrentUserBirthdate());
+        AppSettings.getInstance().setBirthday(SessionManager.getInstance().getCurrentUserBirthdate().getTime());
         restApiHelper.getAllDayHistory(userId, new retrofit2.Callback<List<DayHistoryDTO>>() {
             @SuppressLint("CheckResult")
             @Override
@@ -140,6 +143,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             DayHistoryRepository.getInstance().insertFetchedData(dayHistoryModel).subscribe();
                         }
                         DayHistoryRepository.getInstance().getCurrentDay().subscribe((dayHistoryModel, throwable) -> {
+                            Log.d("MinhNTn", "onResponse: " + dayHistoryModel);
                             if (dayHistoryModel != null) {
                                 AppSettings.getInstance().setHeightDefault(dayHistoryModel.getHeight());
                                 AppSettings.getInstance().setWeightDefault(dayHistoryModel.getWeight());

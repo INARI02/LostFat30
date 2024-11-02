@@ -184,7 +184,7 @@ public class ProfileActivity extends BaseActivity implements DialogResultListene
 
         txtWeight.setText(df.format(weight) + (type == 1 ? " LB" : " KG"));
         txtHeight.setText((type == 0 ? df2.format(height) : df.format(height)) + (type == 1 ? " FT" : " CM"));
-        txtBirthday.setText(DateUtils.formatBirthday(birthday));
+        txtBirthday.setText(DateUtils.formatBirthdayByTime(birthday));
         if (AppSettings.getInstance().getUnitType() == 0){
             tvUnitKgLb.setText("Kg, Cm");
         }else tvUnitKgLb.setText("Lb, Ft");
