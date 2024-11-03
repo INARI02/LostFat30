@@ -6,10 +6,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.nhn.fitness.data.dto.DailySectionUserDTO;
 import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.dto.SectionHistoryDTO;
+import com.nhn.fitness.data.dto.StepDTO;
 import com.nhn.fitness.data.model.DailySectionUser;
 import com.nhn.fitness.data.model.DayHistoryModel;
 import com.nhn.fitness.data.model.LocationPoint;
 import com.nhn.fitness.data.model.SectionHistory;
+import com.nhn.fitness.data.model.Step;
 
 import java.util.Calendar;
 
@@ -31,6 +33,12 @@ public class DataConverter {
         calendar.setTimeInMillis(dto.getCalendar());
         return new SectionHistory(dto.getId(), calendar, dto.getTitle(),
                 dto.getTotalTime(), dto.getCalories(), dto.getSectionId(), dto.getThumb());
+    }
+
+    public static Step toModel(StepDTO dto) {
+        Step step = new Step(dto.getDate(), dto.getSteps());
+        step.setUuid(dto.getUuid());
+        return step;
     }
 
     @SuppressLint("DefaultLocale")

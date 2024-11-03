@@ -8,6 +8,7 @@ import com.nhn.fitness.data.dto.DailySectionUserDTO;
 import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.dto.LoginDTO;
 import com.nhn.fitness.data.dto.SectionHistoryDTO;
+import com.nhn.fitness.data.dto.StepDTO;
 import com.nhn.fitness.data.dto.UserDTO;
 import com.nhn.fitness.data.dto.UserWorkoutInfoDTO;
 
@@ -86,5 +87,13 @@ public class RestApiHelper {
 
     public void deleteAllData(int id, Callback<Void> callback) {
         restApiService.deleteAllData(id).enqueue(callback);
+    }
+
+    public void saveStep(StepDTO stepDTO, Callback<StepDTO> callback) {
+        restApiService.saveStep(stepDTO).enqueue(callback);
+    }
+
+    public void getStep(int userId, Callback<List<StepDTO>> callback) {
+        restApiService.getSteps(userId).enqueue(callback);
     }
 }

@@ -4,6 +4,7 @@ import com.nhn.fitness.data.dto.DailySectionUserDTO;
 import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.dto.LoginDTO;
 import com.nhn.fitness.data.dto.SectionHistoryDTO;
+import com.nhn.fitness.data.dto.StepDTO;
 import com.nhn.fitness.data.dto.UserDTO;
 import com.nhn.fitness.data.dto.UserWorkoutInfoDTO;
 
@@ -53,4 +54,10 @@ public interface RestApiService {
 
     @DELETE("/user/data_all/{id}")
     Call<Void> deleteAllData(@Path("id") int id);
+
+    @POST("/api/step")
+    Call<StepDTO> saveStep(@Body StepDTO stepDTO);
+
+    @GET("/api/step/{userId}")
+    Call<List<StepDTO>> getSteps(@Path("userId") int userId);
 }

@@ -15,10 +15,7 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,10 +24,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.nhn.fitness.R;
-import com.nhn.fitness.service.ApiService;
+import com.nhn.fitness.data.model.Step;
+import com.nhn.fitness.data.repositories.StepRepository;
+import com.nhn.fitness.data.room.AppDatabase;
 import com.nhn.fitness.ui.base.BaseActivity;
 import com.nhn.fitness.utils.NotificationFit;
-import com.nhn.fitness.utils.SQLiteHelper;
 import com.nhn.fitness.utils.Utils;
 
 import org.eazegraph.lib.charts.BarChart;
@@ -44,10 +42,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class FitSensorActivity extends BaseActivity implements SensorEventListener {
     final static int DEFAULT_GOAL = 10000;
     private TextView stepsView, tvTotal, tvFit, tvUnit;
@@ -57,10 +51,16 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
     final static float DEFAULT_STEP_SIZE = Locale.getDefault() == Locale.US ? 2.5f : 75f;
     final static String DEFAULT_STEP_UNIT = Locale.getDefault() == Locale.US ? "ft" : "cm";
 
-    private int todayOffset, total_start, goal, since_boot, total_days;
+    private int total_start, goal, since_boot, total_days;
     public final static NumberFormat formatter = NumberFormat.getInstance(Locale.getDefault());
     private boolean showSteps = true;
     private Sensor mSensor;
+    private AppDatabase mAppDatabase;
+    private StepRepository mStepRepository;
+    private boolean flagOpen = true;
+    private int todayOffset = 0; // So buoc da di trong ngay hom nay truoc khi bat dau session
+    private int startSteps = 0; // So buoc di bat dau khi mo session sensor nay
+    private int currentSessionSteps = 0; // Tong so buoc di trong session nay
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +87,8 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
     }
 
     private void initViews() {
+        mAppDatabase = AppDatabase.getInstance();
+        mStepRepository = StepRepository.getInstance();
         //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (Build.VERSION.SDK_INT >= 26) {
             NotificationFit.startForegroundService(this,
@@ -166,7 +168,7 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
 
     private void updatePie() {
         // todayOffset might still be Integer.MIN_VALUE on first start
-        int steps_today = Math.max(todayOffset + since_boot, 0);
+        int steps_today = Math.max(todayOffset + currentSessionSteps, 0);
 //        if (since_boot-steps_today >= 14) {
 //            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 //// Vibrate for 500 milliseconds
@@ -195,8 +197,11 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
         }
         pieChart.update();
         if (showSteps) {
+            // Tong so buoc di duoc trong hom nay
             stepsView.setText(formatter.format(steps_today));
+            // Tong so buoc di duoc trong tat ca cac ngay
             tvTotal.setText(formatter.format(total_start + steps_today));
+            // So buoc di trung binh trong mot ngay
             tvFit.setText(formatter.format((total_start + steps_today) / total_days));
         } else {
             // update only every 10 steps when displaying distance
@@ -237,14 +242,12 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
         }
         barChart.setShowDecimal(!showSteps); // show decimal in distance view only
         BarModel bm;
-        SQLiteHelper db = SQLiteHelper.getInstance(this);
-        List<Pair<Long, Integer>> last = db.getLastEntries(8);
-        db.close();
-        for (int i = last.size() - 1; i > 0; i--) {
-            Pair<Long, Integer> current = last.get(i);
-            steps = current.second;
+        List<Step> lastEntries = mAppDatabase.stepDao().getLastEntries(8);
+        for (int i = lastEntries.size() - 1; i >= 0; i--) {
+            Step current = lastEntries.get(i);
+            steps = current.getSteps();
             if (steps > 0) {
-                bm = new BarModel(df.format(new Date(current.first)), 0,
+                bm = new BarModel(df.format(new Date(current.getDate())), 0,
                         steps > goal ? Color.parseColor("#99CC00") : Color.parseColor("#0099cc"));
                 if (showSteps) {
                     bm.setValue(steps);
@@ -281,19 +284,19 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(final SensorEvent event) {
+        Log.d("MinhNTn", "onSensorChanged: " + event.values[0]);
+        // So buoc di hien tai trong session nay
+        int currentSteps = 0;
+        if (flagOpen) {
+            flagOpen = false;
+            startSteps = (int) event.values[0];
+        }
         if (event.values[0] > Integer.MAX_VALUE || event.values[0] == 0) {
             return;
         }
-        if (todayOffset == Integer.MIN_VALUE) {
-            // no values for today
-            // we dont know when the reboot was, so set todays steps to 0 by
-            // initializing them with -STEPS_SINCE_BOOT
-            todayOffset = -(int) event.values[0];
-            SQLiteHelper db = SQLiteHelper.getInstance(this);
-            db.insertNewDay(Utils.getToday(), (int) event.values[0]);
-            db.close();
-        }
+        currentSteps = (int) event.values[0];
         since_boot = (int) event.values[0];
+        currentSessionSteps = currentSteps - startSteps;
         updatePie();
     }
 
@@ -301,16 +304,14 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
     public void onResume() {
         super.onResume();
 
-        SQLiteHelper db = SQLiteHelper.getInstance(this);
-
         //  if (BuildConfig.DEBUG) db.logState();
         // read todays offset
-        todayOffset = db.getSteps(Utils.getToday());
+        todayOffset = mStepRepository.getSteps(Utils.getToday());
 
         SharedPreferences prefs = getSharedPreferences("pedometer", Context.MODE_PRIVATE);
 
         goal = prefs.getInt("goal", DEFAULT_GOAL);
-        since_boot = db.getCurrentSteps();
+        since_boot = mStepRepository.getCurrentSteps();
         int pauseDifference = since_boot - prefs.getInt("pauseCount", since_boot);
 
         // register a sensorlistener to live update the UI if a step is taken
@@ -336,10 +337,8 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
 
         since_boot -= pauseDifference;
 
-        total_start = db.getTotalWithoutToday();
-        total_days = db.getDays();
-
-        db.close();
+        total_start = mStepRepository.getTotalWithoutToday();
+        total_days = mStepRepository.getDays();
 
         stepsDistanceChanged();
     }
@@ -354,9 +353,7 @@ public class FitSensorActivity extends BaseActivity implements SensorEventListen
         } catch (Exception e) {
 
         }
-        SQLiteHelper db = SQLiteHelper.getInstance(this);
-        db.saveCurrentSteps(since_boot);
-        db.close();
+        mStepRepository.saveCurrentSteps(Utils.getToday(), todayOffset + currentSessionSteps);
     }
 
     @Override

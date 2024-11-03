@@ -18,10 +18,12 @@ import com.nhn.fitness.data.dao.DayHistoryDao;
 import com.nhn.fitness.data.dao.ReminderDao;
 import com.nhn.fitness.data.dao.SectionHistoryDao;
 import com.nhn.fitness.data.dao.SectionUserDao;
+import com.nhn.fitness.data.dao.StepDao;
 import com.nhn.fitness.data.dao.WorkoutUserDao;
 import com.nhn.fitness.data.dto.DailySectionUserDTO;
 import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.dto.SectionHistoryDTO;
+import com.nhn.fitness.data.dto.StepDTO;
 import com.nhn.fitness.data.model.ChallengeDay;
 import com.nhn.fitness.data.model.ChallengeDayUser;
 import com.nhn.fitness.data.model.DailySection;
@@ -31,17 +33,18 @@ import com.nhn.fitness.data.model.Reminder;
 import com.nhn.fitness.data.model.Section;
 import com.nhn.fitness.data.model.SectionHistory;
 import com.nhn.fitness.data.model.SectionUser;
+import com.nhn.fitness.data.model.Step;
 import com.nhn.fitness.data.model.Workout;
 import com.nhn.fitness.data.model.WorkoutUser;
 import com.nhn.fitness.data.repositories.DailySectionRepository;
 import com.nhn.fitness.data.repositories.DayHistoryRepository;
 import com.nhn.fitness.data.repositories.ReminderRepository;
 import com.nhn.fitness.data.repositories.SectionHistoryRepository;
+import com.nhn.fitness.data.repositories.StepRepository;
 import com.nhn.fitness.data.shared.AppSettings;
 import com.nhn.fitness.data.shared.SessionManager;
 import com.nhn.fitness.service.rest.RestApiHelper;
 import com.nhn.fitness.ui.base.BaseApplication;
-import com.nhn.fitness.ui.interfaces.Callback;
 import com.nhn.fitness.ui.interfaces.DatabaseListener;
 import com.nhn.fitness.utils.DataConverter;
 import com.nhn.fitness.utils.Utils;
@@ -53,10 +56,12 @@ import java.util.List;
 import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
-@Database(entities = {SectionUser.class, WorkoutUser.class, DayHistoryModel.class, Reminder.class, ChallengeDayUser.class, SectionHistory.class, DailySectionUser.class},
-        version = 3,
+@Database(entities = {SectionUser.class, WorkoutUser.class, DayHistoryModel.class, Reminder.class,
+        ChallengeDayUser.class, SectionHistory.class, DailySectionUser.class, Step.class},
+        version = 4,
         exportSchema = false)
 @TypeConverters(DateConverters.class)
 public abstract class AppDatabase extends RoomDatabase {
@@ -109,6 +114,8 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract DailySectionUserDao dailySectionUserDao();
 
+    public abstract StepDao stepDao();
+
     @SuppressLint("CheckResult")
     public static void initAppDatabase(DatabaseListener listener) {
         Log.e("status", "initDatabase");
@@ -124,6 +131,7 @@ public abstract class AppDatabase extends RoomDatabase {
         DayHistoryRepository.getInstance().deleteAll().subscribe();
         ReminderRepository.getInstance().deleteAll().subscribe();
         SectionHistoryRepository.getInstance().deleteAll().subscribe();
+        StepRepository.getInstance().deleteAll().subscribe();
     }
 
     public void fetchAllData(com.nhn.fitness.ui.interfaces.Callback onFetchDataDone) {
@@ -173,7 +181,25 @@ public abstract class AppDatabase extends RoomDatabase {
                                         }
                                     }
                                 }
-                                onFetchDataDone.execute(null);
+                                restApiHelper.getStep(userId, new retrofit2.Callback<List<StepDTO>>() {
+                                    @Override
+                                    public void onResponse(Call<List<StepDTO>> call, Response<List<StepDTO>> response) {
+                                        if (response.isSuccessful()) {
+                                            if (response.body() != null) {
+                                                for (StepDTO stepDTO : response.body()) {
+                                                    Step step = DataConverter.toModel(stepDTO);
+                                                    StepRepository.getInstance().saveFetchStep(step);
+                                                }
+                                            }
+                                        }
+                                        onFetchDataDone.execute(null);
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<List<StepDTO>> call, Throwable t) {
+
+                                    }
+                                });
                             }
 
                             @Override
