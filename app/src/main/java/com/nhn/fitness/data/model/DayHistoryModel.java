@@ -29,6 +29,10 @@ public class DayHistoryModel {
     @Ignore
     private boolean hasWorkout;
 
+    public DayHistoryModel() {
+
+    }
+
     @Ignore
     public DayHistoryModel(Calendar calendar) {
         this.id = DateUtils.getIdDay(calendar);

@@ -138,7 +138,6 @@ public abstract class AppDatabase extends RoomDatabase {
         final RestApiHelper restApiHelper = RestApiHelper.getInstance();
         final int userId = SessionManager.getInstance().getCurrentUser().getId();
         // set ngay sinh vao preferences
-        Log.d("MinhNTn", "fetchAllData: " + SessionManager.getInstance().getCurrentUserBirthdate());
         AppSettings.getInstance().setBirthday(SessionManager.getInstance().getCurrentUserBirthdate().getTime());
         restApiHelper.getAllDayHistory(userId, new retrofit2.Callback<List<DayHistoryDTO>>() {
             @SuppressLint("CheckResult")
@@ -146,17 +145,16 @@ public abstract class AppDatabase extends RoomDatabase {
             public void onResponse(@NonNull Call<List<DayHistoryDTO>> call, @NonNull Response<List<DayHistoryDTO>> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
+                        DayHistoryModel lastDayHistory = new DayHistoryModel();
                         for (DayHistoryDTO dayHistoryDTO : response.body()) {
                             DayHistoryModel dayHistoryModel = DataConverter.toModel(dayHistoryDTO);
+                            if (lastDayHistory.getId() < dayHistoryModel.getId()) {
+                                lastDayHistory = dayHistoryModel;
+                            }
                             DayHistoryRepository.getInstance().insertFetchedData(dayHistoryModel).subscribe();
                         }
-                        DayHistoryRepository.getInstance().getCurrentDay().subscribe((dayHistoryModel, throwable) -> {
-                            Log.d("MinhNTn", "onResponse: " + dayHistoryModel);
-                            if (dayHistoryModel != null) {
-                                AppSettings.getInstance().setHeightDefault(dayHistoryModel.getHeight());
-                                AppSettings.getInstance().setWeightDefault(dayHistoryModel.getWeight());
-                            }
-                        });
+                        AppSettings.getInstance().setHeightDefault(lastDayHistory.getHeight());
+                        AppSettings.getInstance().setWeightDefault(lastDayHistory.getWeight());
                     }
                 }
                 restApiHelper.getDailySectionUser(userId, new retrofit2.Callback<List<DailySectionUserDTO>>() {

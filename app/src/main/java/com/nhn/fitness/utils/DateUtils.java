@@ -182,7 +182,7 @@ public class DateUtils {
 
     @SuppressLint("SimpleDateFormat")
     public static String formatBirthdayByTime(long time) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return simpleDateFormat.format(time);
     }
 }

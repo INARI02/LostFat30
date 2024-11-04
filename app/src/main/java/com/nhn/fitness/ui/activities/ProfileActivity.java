@@ -81,7 +81,7 @@ public class ProfileActivity extends BaseActivity implements DialogResultListene
         findViewById(R.id.row_birthday).setOnClickListener(view -> {
             BirthdayDialog dialog = new BirthdayDialog(this);
             dialog.setCallback(value -> {
-                txtBirthday.setText(DateUtils.formatBirthday((long) value));
+                txtBirthday.setText(DateUtils.formatBirthdayByTime((long) value));
             });
             dialog.show(getSupportFragmentManager(), null);
         });
@@ -219,7 +219,7 @@ public class ProfileActivity extends BaseActivity implements DialogResultListene
         mNameTextView.setText(mSessionManager.getCurrentUser().getName());
         mEmailTextView.setText(mSessionManager.getCurrentUserMail());
         mPhoneTextView.setText(mSessionManager.getCurrentUserPhone());
-        txtBirthday.setText(DateUtils.formatBirthday(mSessionManager.getCurrentUserBirthdate().getTime()));
+        txtBirthday.setText(DateUtils.formatBirthdayByTime(mSessionManager.getCurrentUserBirthdate().getTime()));
     }
 
     @Override

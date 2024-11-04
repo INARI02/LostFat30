@@ -57,7 +57,8 @@ public class BirthdayDialog extends BaseDialog implements DatePicker.OnDateChang
     @Override
     protected void initViews() {
         super.initViews();
-        Calendar calendar = DateUtils.convertIdToDate(AppSettings.getInstance().getBirthday());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(AppSettings.getInstance().getBirthday());
         datePicker = rootView.findViewById(R.id.date_picker);
         datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), this);
     }
@@ -113,6 +114,6 @@ public class BirthdayDialog extends BaseDialog implements DatePicker.OnDateChang
         calendar.set(Calendar.YEAR, i);
         calendar.set(Calendar.MONTH, i1);
         calendar.set(Calendar.DAY_OF_MONTH, i2);
-        birthday = DateUtils.getIdDay(calendar);
+        birthday = calendar.getTimeInMillis();//DateUtils.getIdDay(calendar);
     }
 }
