@@ -8,6 +8,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.nhn.fitness.data.model.Section;
+import com.nhn.fitness.data.model.SectionUser;
 
 import java.util.List;
 
@@ -47,4 +48,7 @@ public interface SectionDao {
 
     @Update
     Completable update(Section section);
+
+    @Query("DELETE FROM section WHERE LENGTH(id) = 5")
+    Completable deleteAllUserAdded();
 }

@@ -136,7 +136,7 @@ public class MapService {
 
     private void calculateCalories(long time) {
         float weight = AppSettings.getInstance().getWeightDefault();
-        long diff = (time - lastLCTime); // giay
+        long diff = Math.abs((time - lastLCTime)); // giay
         long hour = (diff / 3600);
         double met = DataConverter.getMetBySpeed(instantSpeed);
 

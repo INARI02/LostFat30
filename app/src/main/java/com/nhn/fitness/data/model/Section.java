@@ -12,6 +12,7 @@ import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.nhn.fitness.R;
+import com.nhn.fitness.data.dto.SectionDTO;
 import com.nhn.fitness.data.room.StringListConverters;
 import com.nhn.fitness.data.shared.AppSettings;
 
@@ -230,6 +231,23 @@ public class Section implements Parcelable {
             return new Section[size];
         }
     };
+
+    public SectionDTO toDTO() {
+        SectionDTO sectionDTO = new SectionDTO();
+        sectionDTO.setId(id);
+        sectionDTO.setTitle(title);
+        sectionDTO.setDescription(description);
+        sectionDTO.setThumb(thumb);
+        sectionDTO.setThumbFemale(thumbFemale);
+        sectionDTO.setLevel(level);
+        sectionDTO.setType(type);
+        sectionDTO.setStatus(status);
+        StringListConverters converters = new StringListConverters();
+        sectionDTO.setWorkoutIds(converters.fromStringList(workoutsId));
+        sectionDTO.setTitleLanguage(titleLanguage.toString());
+        sectionDTO.setDescriptionLanguage(descriptionLanguage.toString());
+        return sectionDTO;
+    }
 }
 
 

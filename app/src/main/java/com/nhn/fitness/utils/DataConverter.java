@@ -1,17 +1,21 @@
 package com.nhn.fitness.utils;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.nhn.fitness.data.dto.DailySectionUserDTO;
 import com.nhn.fitness.data.dto.DayHistoryDTO;
+import com.nhn.fitness.data.dto.SectionDTO;
 import com.nhn.fitness.data.dto.SectionHistoryDTO;
 import com.nhn.fitness.data.dto.StepDTO;
 import com.nhn.fitness.data.model.DailySectionUser;
 import com.nhn.fitness.data.model.DayHistoryModel;
 import com.nhn.fitness.data.model.LocationPoint;
+import com.nhn.fitness.data.model.Section;
 import com.nhn.fitness.data.model.SectionHistory;
 import com.nhn.fitness.data.model.Step;
+import com.nhn.fitness.data.room.StringListConverters;
 
 import java.util.Calendar;
 
@@ -33,6 +37,22 @@ public class DataConverter {
         calendar.setTimeInMillis(dto.getCalendar());
         return new SectionHistory(dto.getId(), calendar, dto.getTitle(),
                 dto.getTotalTime(), dto.getCalories(), dto.getSectionId(), dto.getThumb());
+    }
+
+    public static Section toModel(SectionDTO dto) {
+        Section section = new Section();
+        section.setId(dto.getId());
+        section.setTitle(dto.getTitle());
+        section.setDescription(dto.getDescription());
+        section.setThumb(dto.getThumb());
+        section.setThumbFemale(dto.getThumbFemale());
+        section.setLevel(dto.getLevel());
+        section.setType(dto.getType());
+        section.setStatus(dto.getStatus());
+        StringListConverters stringListConverters = new StringListConverters();
+        Log.d("minhntn", "toModel: " + dto.getWorkoutIds());
+        section.setWorkoutsId(stringListConverters.toStringList(dto.getWorkoutIds()));
+        return section;
     }
 
     public static Step toModel(StepDTO dto) {

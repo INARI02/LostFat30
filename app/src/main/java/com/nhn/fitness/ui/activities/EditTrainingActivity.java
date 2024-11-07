@@ -160,7 +160,7 @@ public class EditTrainingActivity extends BaseActivity implements ExerciseAdapte
         sectionUser = new SectionUser(section.getId());
         sectionUser.setTraining(true);
         sectionUser.setWorkoutsId(workoutUserIds);
-        addDisposable(SectionRepository.getInstance().insert(section)
+        addDisposable(SectionRepository.getInstance().insert(section, false)
                 .subscribe(() -> {
                     Log.e("status", "insert section");
                     addDisposable(SectionRepository.getInstance().insert(sectionUser)

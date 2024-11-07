@@ -3,6 +3,7 @@ package com.nhn.fitness.service.rest;
 import com.nhn.fitness.data.dto.DailySectionUserDTO;
 import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.dto.LoginDTO;
+import com.nhn.fitness.data.dto.SectionDTO;
 import com.nhn.fitness.data.dto.SectionHistoryDTO;
 import com.nhn.fitness.data.dto.StepDTO;
 import com.nhn.fitness.data.dto.UserDTO;
@@ -60,4 +61,13 @@ public interface RestApiService {
 
     @GET("/api/step/{userId}")
     Call<List<StepDTO>> getSteps(@Path("userId") int userId);
+
+    @POST("/api/section")
+    Call<SectionDTO> saveSection(@Body SectionDTO sectionDTO);
+
+    @GET("/api/section/{userId}")
+    Call<List<SectionDTO>> getSections(@Path("userId") int userId);
+
+    @DELETE("/user/section/{sectionId}/{userId}")
+    Call<Void> deleteSection(@Path("sectionId") String sectionId, @Path("userId") int userId);
 }

@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 import com.nhn.fitness.data.dto.DailySectionUserDTO;
 import com.nhn.fitness.data.dto.DayHistoryDTO;
 import com.nhn.fitness.data.dto.LoginDTO;
+import com.nhn.fitness.data.dto.SectionDTO;
 import com.nhn.fitness.data.dto.SectionHistoryDTO;
 import com.nhn.fitness.data.dto.StepDTO;
 import com.nhn.fitness.data.dto.UserDTO;
@@ -95,5 +96,17 @@ public class RestApiHelper {
 
     public void getStep(int userId, Callback<List<StepDTO>> callback) {
         restApiService.getSteps(userId).enqueue(callback);
+    }
+
+    public void saveSection(SectionDTO sectionDTO, Callback<SectionDTO> callback) {
+        restApiService.saveSection(sectionDTO).enqueue(callback);
+    }
+
+    public void getSections(int userId, Callback<List<SectionDTO>> callback) {
+        restApiService.getSections(userId).enqueue(callback);
+    }
+
+    public void deleteSection(String sectionId, int userId, Callback<Void> callback) {
+        restApiService.deleteSection(sectionId, userId).enqueue(callback);
     }
 }

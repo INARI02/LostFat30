@@ -2,10 +2,13 @@ package com.nhn.fitness.data.repositories;
 
 import android.annotation.SuppressLint;
 
+import com.nhn.fitness.data.dto.SectionDTO;
 import com.nhn.fitness.data.model.Section;
 import com.nhn.fitness.data.model.SectionUser;
 import com.nhn.fitness.data.room.AppDatabase;
 import com.nhn.fitness.data.room.AppDatabaseConst;
+import com.nhn.fitness.data.shared.SessionManager;
+import com.nhn.fitness.service.rest.RestApiHelper;
 import com.nhn.fitness.utils.Utils;
 
 import java.util.ArrayList;
@@ -17,6 +20,9 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SectionRepository {
     private static SectionRepository instance;
@@ -35,12 +41,39 @@ public class SectionRepository {
     }
 
     public Completable delete(Section section) {
+        RestApiHelper.getInstance().deleteSection(section.getId(),
+                SessionManager.getInstance().getCurrentUser().getId(), new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
         return AppDatabaseConst.getInstance().sectionDao().delete(section)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Completable insert(Section section) {
+    public Completable insert(Section section, boolean fetch) {
+        if (!fetch) {
+            SectionDTO sectionDTO = section.toDTO();
+            sectionDTO.setUserId(SessionManager.getInstance().getCurrentUser().getId());
+            RestApiHelper.getInstance().saveSection(sectionDTO, new Callback<SectionDTO>() {
+                @Override
+                public void onResponse(Call<SectionDTO> call, Response<SectionDTO> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<SectionDTO> call, Throwable t) {
+
+                }
+            });
+        }
         return AppDatabaseConst.getInstance().sectionDao().insert(section)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -169,6 +202,19 @@ public class SectionRepository {
     }
 
     public Completable updateSection(Section section) {
+        SectionDTO sectionDTO = section.toDTO();
+        sectionDTO.setUserId(SessionManager.getInstance().getCurrentUser().getId());
+        RestApiHelper.getInstance().saveSection(sectionDTO, new Callback<SectionDTO>() {
+            @Override
+            public void onResponse(Call<SectionDTO> call, Response<SectionDTO> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<SectionDTO> call, Throwable t) {
+
+            }
+        });
         return AppDatabaseConst.getInstance().sectionDao().update(section)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -191,6 +237,17 @@ public class SectionRepository {
 
     public void deleteAllTraining() {
         AppDatabase.getInstance().sectionUserDao().deleteAllTraining()
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe();
+    }
+
+    public void deleteAllUserAdded() {
+        AppDatabaseConst.getInstance().sectionDao().deleteAllUserAdded()
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe();
+        AppDatabase.getInstance().sectionUserDao().deleteAllUserAdded()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe();

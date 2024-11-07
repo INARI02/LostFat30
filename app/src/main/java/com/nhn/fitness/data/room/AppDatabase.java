@@ -22,6 +22,7 @@ import com.nhn.fitness.data.dao.StepDao;
 import com.nhn.fitness.data.dao.WorkoutUserDao;
 import com.nhn.fitness.data.dto.DailySectionUserDTO;
 import com.nhn.fitness.data.dto.DayHistoryDTO;
+import com.nhn.fitness.data.dto.SectionDTO;
 import com.nhn.fitness.data.dto.SectionHistoryDTO;
 import com.nhn.fitness.data.dto.StepDTO;
 import com.nhn.fitness.data.model.ChallengeDay;
@@ -40,6 +41,7 @@ import com.nhn.fitness.data.repositories.DailySectionRepository;
 import com.nhn.fitness.data.repositories.DayHistoryRepository;
 import com.nhn.fitness.data.repositories.ReminderRepository;
 import com.nhn.fitness.data.repositories.SectionHistoryRepository;
+import com.nhn.fitness.data.repositories.SectionRepository;
 import com.nhn.fitness.data.repositories.StepRepository;
 import com.nhn.fitness.data.shared.AppSettings;
 import com.nhn.fitness.data.shared.SessionManager;
@@ -132,6 +134,7 @@ public abstract class AppDatabase extends RoomDatabase {
         ReminderRepository.getInstance().deleteAll().subscribe();
         SectionHistoryRepository.getInstance().deleteAll().subscribe();
         StepRepository.getInstance().deleteAll().subscribe();
+        SectionRepository.getInstance().deleteAllUserAdded();
     }
 
     public void fetchAllData(com.nhn.fitness.ui.interfaces.Callback onFetchDataDone) {
@@ -190,7 +193,30 @@ public abstract class AppDatabase extends RoomDatabase {
                                                 }
                                             }
                                         }
-                                        onFetchDataDone.execute(null);
+                                        restApiHelper.getSections(userId, new retrofit2.Callback<List<SectionDTO>>() {
+                                            @Override
+                                            public void onResponse(Call<List<SectionDTO>> call, Response<List<SectionDTO>> response) {
+                                                if (response.isSuccessful()) {
+                                                    if (response.body() != null) {
+                                                        for (SectionDTO sectionDTO : response.body()) {
+                                                            Section section = DataConverter.toModel(sectionDTO);
+                                                            SectionRepository.getInstance().insert(section, true).subscribe(() -> {
+                                                                SectionUser sectionUser = new SectionUser(section.getId());
+                                                                sectionUser.setTraining(true);
+                                                                sectionUser.setWorkoutsId(section.getWorkoutsId());
+                                                                SectionRepository.getInstance().insert(sectionUser).subscribe();
+                                                            });
+                                                        }
+                                                    }
+                                                }
+                                                onFetchDataDone.execute(null);
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<List<SectionDTO>> call, Throwable t) {
+
+                                            }
+                                        });
                                     }
 
                                     @Override

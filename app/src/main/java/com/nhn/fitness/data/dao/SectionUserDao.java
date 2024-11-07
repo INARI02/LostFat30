@@ -53,4 +53,7 @@ public interface SectionUserDao {
 
     @Query("DELETE FROM section_user WHERE isTraining = 1")
     Completable deleteAllTraining();
+
+    @Query("DELETE FROM section_user WHERE LENGTH(id) = 5")
+    Completable deleteAllUserAdded();
 }
